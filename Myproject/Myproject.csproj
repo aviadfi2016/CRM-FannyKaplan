@@ -176,6 +176,7 @@
     <Content Include="forms\adult.aspx" />
     <Content Include="forms\Interest.aspx" />
     <Content Include="forms\child.aspx" />
+    <Content Include="forms\Reports.aspx" />
     <Content Include="forms\searchItem.aspx" />
     <Content Include="images\but_exel_over.gif" />
     <Content Include="images\cal.jpg" />
@@ -393,6 +394,13 @@
     </Compile>
     <Compile Include="forms\child.aspx.designer.cs">
       <DependentUpon>child.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Reports.aspx.cs">
+      <DependentUpon>Reports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Reports.aspx.designer.cs">
+      <DependentUpon>Reports.aspx</DependentUpon>
     </Compile>
     <Compile Include="forms\searchItem.aspx.cs">
       <DependentUpon>searchItem.aspx</DependentUpon>

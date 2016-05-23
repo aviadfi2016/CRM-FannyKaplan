@@ -11,7 +11,7 @@
        חיפוש לפי שם: <asp:TextBox ID="txtsearch" runat="server"></asp:TextBox>
         <asp:Button ID="Button1" runat="server" onclick="Button1_Click"
         Text="חיפוש" />
-    <div>
+   
         <table dir="rtl" align="center" style="position: relative; top: 20px;">
             <tr>
                 <td>
@@ -22,6 +22,9 @@
                             </td>
                             <td>
                                 <asp:TextBox ID="txtFirstName" runat="server" MaxLength="50" Width="250px"></asp:TextBox>
+
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1"   forecolor="Red" controltovalidate="txtFirstName"  runat="server" ErrorMessage="נא הזן שם פרטי"></asp:RequiredFieldValidator>
+
                             </td>
                         </tr>
                         <tr>
@@ -30,6 +33,8 @@
                             </td>
                             <td>
                                 <asp:TextBox ID="txtLastName" runat="server" MaxLength="50" Width="250px"></asp:TextBox>
+
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2"   forecolor="Red" controltovalidate="txtLastName"  runat="server" ErrorMessage="נא הזן שם משפחה"></asp:RequiredFieldValidator>
                             </td>
                         </tr>
 
@@ -40,6 +45,8 @@
                             </td>
                             <td>
                                 <asp:TextBox ID="txtTaz" runat="server" MaxLength="50" Width="250px" ValidateRequestMode="Inherit"></asp:TextBox>
+
+
                             </td>
                         </tr>
 
@@ -75,7 +82,7 @@
                                 <asp:TextBox ID="txtAge" runat="server" MaxLength="50" Width="50px"></asp:TextBox>
                                
                                
-                               <asp:rangevalidator errormessage="Please enter value between 10-20." forecolor="Red" controltovalidate="txtAge" minimumvalue="18" maximumvalue="99" runat="server">
+                               <asp:rangevalidator errormessage="גיל לא בתווך" forecolor="Red" controltovalidate="txtAge" minimumvalue="18" maximumvalue="99" runat="server">
             </asp:rangevalidator></td>
 
 
@@ -88,9 +95,10 @@
                         <tr>
                             <td>
                               טל' בבית :
-                                                           </td>
+                            </td>
                             <td>
                                 <asp:TextBox ID="txtPhoneNumber" runat="server" MaxLength="10" Width="250px"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4"   forecolor="Red" controltovalidate="txtPhoneNumber"  runat="server" ErrorMessage="נא הזן מס' טלפון"></asp:RequiredFieldValidator>
                             </td>
                         </tr>
                         <tr>
@@ -99,6 +107,8 @@
                             </td>
                             <td>
                                 <asp:TextBox ID="txtMobilePhone" runat="server" MaxLength="50" Width="250px"></asp:TextBox>
+
+                                   <asp:RequiredFieldValidator ID="RequiredFieldValidator5"   forecolor="Red" controltovalidate="txtMobilePhone"  runat="server" ErrorMessage=" נא הזן מס' טלפון נייד"></asp:RequiredFieldValidator> 
                             </td>
                         </tr>
                         <tr>
@@ -189,6 +199,10 @@
                             </td>
                             <td>
                                 <asp:TextBox ID="txtDate" runat="server" MaxLength="50" Width="250px"></asp:TextBox>
+
+                              
+                                
+
                                  <asp:ImageButton ID="ImageButton2" runat="server" Height="17px"
                                         ImageUrl="~/images/cal.jpg" onclick="ImageButton2_Click" Width="21px" />
                                         <asp:Calendar ID="Calendar2" runat="server"
@@ -202,6 +216,9 @@
                                             <TodayDayStyle BackColor="#99CCCC" ForeColor="White" />
                                             <WeekendDayStyle BackColor="#CCCCFF" />
                                        </asp:Calendar>
+
+
+                              
                             </td>
                         </tr>
 
@@ -260,6 +277,9 @@
                             </td>
                         </tr>
 
+
+
+
                         <tr>
                             <td colspan="2" align="center">
                               
@@ -272,6 +292,8 @@
                                 
                             </td>
                         </tr>
+
+   
                     </table>
                 </td>
             </tr>
@@ -426,7 +448,7 @@
             </tr>
         </table>
        <input type="hidden" runat="server" id="hidCustomerID" />
-    </div>
+   
   
 </body>
 
