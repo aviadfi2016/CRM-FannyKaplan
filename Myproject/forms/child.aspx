@@ -7,9 +7,10 @@
     <h2><%: Title %></h2>
     
     
-     טופס הרשמה- ילד<br />
-        
-<br />
+ <td> 
+       חיפוש לפי שם: <asp:TextBox ID="txtsearch" runat="server"></asp:TextBox>
+        <asp:Button ID="Button1" runat="server" onclick="Button1_Click"
+        Text="חיפוש" />
  
        <div>
         <table dir="rtl" align="center" style="position: relative; top: 20px;">
@@ -109,7 +110,18 @@
                                כתובת :
                             </td>
                             <td>
-                                <asp:TextBox ID="txtAddress" runat="server" MaxLength="200" Width="250px"></asp:TextBox>
+                                 <asp:TextBox ID="txtAddress" runat="server" MaxLength="200" Width="250px"></asp:TextBox>
+                                 <asp:DropDownList ID="txtddl_Neighborhood" runat="server">
+                                    <asp:ListItem Value="">-- שכונה--</asp:ListItem> 
+                                    <asp:ListItem>קטמונים א-ו(גוננים)</asp:ListItem>
+                                    <asp:ListItem>פת</asp:ListItem>
+                                    <asp:ListItem>קטמונים ח-ט</asp:ListItem>
+                                    <asp:ListItem>רסקו</asp:ListItem> 
+                                    <asp:ListItem>קטמון הישנה</asp:ListItem>
+                                    <asp:ListItem>גילה</asp:ListItem>
+                                     <asp:ListItem>אחר</asp:ListItem>
+                                </asp:DropDownList>
+
                             </td>
                         </tr>
 
@@ -123,6 +135,22 @@
                         </tr>
                         <tr>
                             <td>
+              
+                                 <asp:Button ID="btnAdd" runat="server" Text="הוספת חוג חדש" OnClick="AddItem" />
+                            </td>
+                            <td>
+
+                                <asp:TextBox ID="txtNewKlass" runat="server" />
+                            </td>
+
+
+
+                        </tr>
+
+
+                        <tr>
+                            <td>
+                        
                                משתתף בחוג :
                             </td>
                             <td>
@@ -130,19 +158,18 @@
                                     <asp:ListItem Value="15">-- בחר חוג--</asp:ListItem> 
                                     <asp:ListItem>אולפן רפואי</asp:ListItem>
                                     <asp:ListItem>אולפן תעסוקתי</asp:ListItem>
-                                    <asp:ListItem>מחשבים</asp:ListItem>
+                                    <asp:ListItem>אנגלית</asp:ListItem>
                                     <asp:ListItem>בלט</asp:ListItem>
                                     <asp:ListItem>ג&#39;אז</asp:ListItem>
-                                    <asp:ListItem>פלאטיס</asp:ListItem>
-                                    <asp:ListItem>יוגה</asp:ListItem>
-                                    <asp:ListItem>אנגלית</asp:ListItem>
+                                    <asp:ListItem>פיסולהשלמת השכלה</asp:ListItem>
                                     <asp:ListItem>זומבה</asp:ListItem>
+                                    <asp:ListItem>יוגה</asp:ListItem>
                                     <asp:ListItem>לימודיה</asp:ListItem>
-                                    <asp:ListItem>קרטה</asp:ListItem>
-                                    <asp:ListItem>פיסול</asp:ListItem>
+                                    <asp:ListItem>מחשבים</asp:ListItem>
+                                    <asp:ListItem>ספריה</asp:ListItem>    
+                                    <asp:ListItem>פלאטיס</asp:ListItem>
                                     <asp:ListItem>ציור</asp:ListItem>
-                                    <asp:ListItem>ספריה</asp:ListItem>
-                                    <asp:ListItem>השלמת השכלה</asp:ListItem>
+                                    <asp:ListItem>קרטה</asp:ListItem>
                                 </asp:DropDownList>
                             </td>
                         </tr>
@@ -172,10 +199,19 @@
                         </tr>
                             <tr>
                             <td>
-                             פעולה משרדית :
+                             סטטוס :
                             </td>
                             <td>
-                                <asp:TextBox ID="txtOffice" runat="server" MaxLength="50" Width="250px"></asp:TextBox>
+                                 <asp:DropDownList ID="txtOffice" runat="server">
+                                    <asp:ListItem Value="0">-- סטטוס--</asp:ListItem> 
+                                    <asp:ListItem>בהמתנה לפתיחה</asp:ListItem>
+                                    <asp:ListItem>הקפאה</asp:ListItem>
+                                    <asp:ListItem>עזב</asp:ListItem>
+                                    <asp:ListItem>רשום</asp:ListItem>
+                                </asp:DropDownList>
+
+
+
                             </td>
                         </tr>
 
@@ -207,6 +243,53 @@
                             </td>
                             <td>
                                 <asp:TextBox ID="txtWorker" runat="server" MaxLength="50" Width="250px"></asp:TextBox>
+                            </td>
+                        </tr>
+
+                           <tr>
+                            <td>
+                             הערות :
+                            </td>
+                            <td>
+                                <asp:TextBox ID="txtComments" runat="server" MaxLength="50" Width="250px"></asp:TextBox>
+                            </td>
+                        </tr>
+
+                            </td>
+                        </tr>
+
+                  <tr>
+                            <td>
+                          מתעדכן בדף הפייסבוק? 
+                            </td>
+                            <td>
+
+
+
+                                <asp:CheckBoxList ID="InfoFaceBook" runat="server"       AutoPostBack ="True"> 
+                                    
+                                    
+                                
+                                
+                                     <asp:ListItem text="כן " Value="כן"></asp:ListItem>
+                                
+
+                               
+                                         <asp:ListItem text="לא " Value="לא"></asp:ListItem>
+                                      
+
+                                
+                               
+                                     
+                                    </asp:CheckBoxList>
+                               
+                                    
+                                    
+
+                                
+                                
+                               
+                                 
                             </td>
                         </tr>
 
@@ -293,6 +376,12 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
+                            <asp:TemplateField HeaderText="שכונה">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblddl_Neighborhood" runat="server" Text='<%#Eval("ddl_Neighborhood") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
 
                             <asp:TemplateField HeaderText="דואר אלקטרוני">
                                 <ItemTemplate>
@@ -326,7 +415,7 @@
                                     <asp:Label ID="lblHMO" runat="server" Text='<%#Eval("HMO") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                             <asp:TemplateField HeaderText="פעולה משרדית" >
+                             <asp:TemplateField HeaderText="סטטוס" >
                                 <ItemTemplate>
                                     <asp:Label ID="lblOffice" runat="server" Text='<%#Eval("Office") %>'></asp:Label>
                                 </ItemTemplate>
@@ -339,6 +428,17 @@
                             <asp:TemplateField HeaderText="שם העובד" >
                                 <ItemTemplate>
                                     <asp:Label ID="lblWorker" runat="server" Text='<%#Eval("Worker") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="הערות" >
+                                <ItemTemplate>
+                                    <asp:Label ID="lblComments" runat="server" Text='<%#Eval("Comments") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                             <asp:TemplateField HeaderText="פייסבוק" >
+                                <ItemTemplate>
+                                    <asp:Label ID="lblInfoFaceBook" runat="server" Text='<%#Eval("InfoFaceBook") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
 

@@ -1,14 +1,14 @@
 ﻿
 
-<%@ Page Title="משתמש מתעניין" Language="C#" MasterPageFile="~/Site.Master" enableEventValidation ="false"  AutoEventWireup="true" Codefile="Interest.aspx.cs" Inherits="Myproject.forms.Interest" %>
+<%@ Page Title="לקוח מתעניין" Language="C#" MasterPageFile="~/Site.Master" enableEventValidation ="false"  AutoEventWireup="true" Codefile="Interest.aspx.cs" Inherits="Myproject.forms.Interest" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <body dir="rtl">
     <h2 ><%: Title %></h2>
     
-    <br />
-          טופס התעניינות
-        
-<br />
+  <td> 
+       חיפוש לפי שם: <asp:TextBox ID="txtsearch" runat="server"></asp:TextBox>
+        <asp:Button ID="Button1" runat="server" onclick="Button1_Click"
+        Text="חיפוש" />
     <div>
         <table dir="rtl" align="center" style="position: relative; top: 20px;">
             <tr>
@@ -16,34 +16,76 @@
                     <table align="center">
                         <tr>
                             <td>
-                               תחום התעניינות :
+           תחום התעניינות :
                             </td>
                             <td>
                               
-                                 <asp:DropDownList ID="txtKlass" runat="server">
+                                 <asp:DropDownList ID="txtKlass" runat="server" EnableTheming="False" EnableViewState="False">
                                     <asp:ListItem Value="15">-- בחר חוג--</asp:ListItem> 
                                     <asp:ListItem>אולפן רפואי</asp:ListItem>
                                     <asp:ListItem>אולפן תעסוקתי</asp:ListItem>
-                                    <asp:ListItem>מחשבים</asp:ListItem>
+                                    <asp:ListItem>אנגלית</asp:ListItem>
                                     <asp:ListItem>בלט</asp:ListItem>
                                     <asp:ListItem>ג&#39;אז</asp:ListItem>
-                                    <asp:ListItem>פלאטיס</asp:ListItem>
-                                    <asp:ListItem>יוגה</asp:ListItem>
-                                    <asp:ListItem>אנגלית</asp:ListItem>
+                                    <asp:ListItem>פיסולהשלמת השכלה</asp:ListItem>
                                     <asp:ListItem>זומבה</asp:ListItem>
+                                    <asp:ListItem>יוגה</asp:ListItem>
                                     <asp:ListItem>לימודיה</asp:ListItem>
-                                    <asp:ListItem>קרטה</asp:ListItem>
-                                    <asp:ListItem>פיסול</asp:ListItem>
+                                    <asp:ListItem>מחשבים</asp:ListItem>
+                                    <asp:ListItem>ספריה</asp:ListItem>  
+                                    <asp:ListItem>פלאטיס</asp:ListItem>
                                     <asp:ListItem>ציור</asp:ListItem>
-                                    <asp:ListItem>ספריה</asp:ListItem>
-                                    <asp:ListItem>השלמת השכלה</asp:ListItem>
+                                    <asp:ListItem>קרטה</asp:ListItem>
+                                </asp:DropDownList>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+              
+                                 <asp:Button ID="btnAdd" runat="server" Text="הוספת חוג חדש" OnClick="AddItem" />
+                            </td>
+                            <td>
+
+                                <asp:TextBox ID="txtNewKlass" runat="server" />
+                            </td>
+
+                        </tr>
+                            <tr>
+                            <td>
+                    סוג לקוח :
+                                      </td>
+                            <td>
+                              
+                                 <asp:DropDownList ID="txtddl_type_user" runat="server">
+                                    <asp:ListItem Value="15">-- סוג לקוח--</asp:ListItem> 
+                                    <asp:ListItem>ילד</asp:ListItem>
+                                    <asp:ListItem>מבוגר</asp:ListItem>
+                                    
                                 </asp:DropDownList>
                             </td>
                         </tr>
                          <tr>
                             <td>
-                               גיל :
+                               ימים מועדפים :
+                                      </td>
+                            <td>
+                                <asp:TextBox ID="txtFavDays" runat="server" MaxLength="50" Width="250px"></asp:TextBox>                                  
+                                 <asp:DropDownList ID="txtddl_KlassTime" runat="server">
+                                    <asp:ListItem Value="3">-- זמן החוג--</asp:ListItem> 
+                                    <asp:ListItem>ערב</asp:ListItem>
+                                    <asp:ListItem>בוקר</asp:ListItem>
+                                    
+                                </asp:DropDownList>
                             </td>
+                             
+                        </tr>
+
+
+
+                         <tr>
+                            <td>
+                               גיל :
+                                      </td>
                             <td>
                                 <asp:TextBox ID="txtAge" runat="server" MaxLength="50" Width="250px"></asp:TextBox>
                             </td>
@@ -89,6 +131,17 @@
                             </td>
                             <td>
                                 <asp:TextBox ID="txtAddress" runat="server" MaxLength="200" Width="250px"></asp:TextBox>
+                                 <asp:DropDownList ID="txtddl_Neighborhood" runat="server">
+                                    <asp:ListItem Value="">-- שכונה--</asp:ListItem> 
+                                    <asp:ListItem>קטמונים א-ו(גוננים)</asp:ListItem>
+                                    <asp:ListItem>פת</asp:ListItem>
+                                    <asp:ListItem>קטמונים ח-ט</asp:ListItem>
+                                    <asp:ListItem>רסקו</asp:ListItem> 
+                                    <asp:ListItem>קטמון הישנה</asp:ListItem>
+                                    <asp:ListItem>גילה</asp:ListItem>
+                                     <asp:ListItem>אחר</asp:ListItem>
+                                </asp:DropDownList>
+
                             </td>
                         </tr>
 
@@ -148,6 +201,44 @@
                             </td>
                         </tr>
                         
+                     <tr>
+                            <td>
+                               קבלת מידע :
+                            </td>
+                            <td>
+
+
+
+                                <asp:CheckBoxList ID="InfoBox" runat="server"       AutoPostBack ="True"> 
+                                     <asp:ListItem text="SMS " Value="SMS"></asp:ListItem>
+                                    
+                                
+                                
+                                     <asp:ListItem text="פייסבוק " Value="פייסבוק"></asp:ListItem>
+                                
+
+                               
+                                         <asp:ListItem text="וואטסאפ " Value="וואטסאפ"></asp:ListItem>
+                                      
+
+                                
+                                    
+                                    <asp:ListItem text="דואר אלקטרוני" Value="דואר-אלקטרוני"></asp:ListItem>
+                                     
+                                    </asp:CheckBoxList>
+                               
+                                    
+                                    
+
+                                
+                                
+                               
+                                 
+                            </td>
+                        </tr>
+
+
+
                         <tr>
                             <td colspan="2" align="center">
                               
@@ -175,9 +266,9 @@
             <tr dir="rtl">
                 <td dir="rtl">
                         <asp:LinkButton ID="lnkExport" runat="server" Text="יצוא לאקסל" onclick="lnkExport_Click"></asp:LinkButton>
-
-
-
+                       
+                 
+                   
 
                              <asp:GridView ID="gvInter" runat="server" AutoGenerateColumns="False" ShowHeaderWhenEmpty="True"
                         EmptyDataText="לא נמצאו רשומות" GridLines="Vertical" CssClass="gv" EmptyDataRowStyle-ForeColor="Red" CellPadding="4" ForeColor="#333333">
@@ -185,12 +276,37 @@
 
 
                         <Columns >
- 
+
+    
+
+
+
+
+                    
                             <asp:TemplateField HeaderText="תחום התעניינות">
                                 <ItemTemplate>
                                     <asp:Label ID="lblKlass" runat="server" Text='<%#Eval("Klass") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
+                            <asp:TemplateField HeaderText="סוג לקוח">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblddl_type_user" runat="server" Text='<%#Eval("ddl_type_user") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="ימים מועדפים">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblFavDays" runat="server" Text='<%#Eval("FavDays") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+
+                            <asp:TemplateField HeaderText="זמן החוג">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblddl_KlassTime" runat="server" Text='<%#Eval("ddl_KlassTime") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                           
+
                             <asp:TemplateField HeaderText="גיל">
                                 <ItemTemplate>
                                     <asp:Label ID="lblAge" runat="server" Text='<%#Eval("Age") %>'></asp:Label>
@@ -221,6 +337,11 @@
                                     <asp:Label ID="lblAddress" runat="server" Text='<%#Eval("Address") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
+                             <asp:TemplateField HeaderText="שכונה">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblddl_Neighborhood" runat="server" Text='<%#Eval("ddl_Neighborhood") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
                             <asp:TemplateField HeaderText="כתובת דואר אלקטרוני" >
                                 <ItemTemplate>
                                     <asp:Label ID="lblEmail" runat="server" Text='<%#Eval("Email") %>'></asp:Label>
@@ -246,9 +367,19 @@
                                     <asp:Label ID="lblWorker" runat="server" Text='<%#Eval("Worker") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
+                           <asp:TemplateField HeaderText="קבלת מידע" >
+                                <ItemTemplate>
+                                    <asp:Label ID="lblInfoBox" runat="server" Text='<%#Eval("Info")%>'></asp:Label>
+              
+                                   
+                                </ItemTemplate>
+                            </asp:TemplateField>
 
+         
 
-
+                           
+ 
+  
 
 
                             <asp:TemplateField HeaderText="פעולה">
@@ -256,8 +387,10 @@
                                     <asp:Button ID="btnEdit" runat="server" Text="ערוך" OnClick="btnEdit_Click" />
                                     <asp:Button ID="btnDelete" runat="server" Text="מחק"  OnClientClick="האם למחוק???"  OnClick="btnDelete_Click" />
                                     <asp:Label ID="lblCustomerID" runat="server" Text='<%#Eval("CustomerID") %>' Visible="false"></asp:Label>
+                                    
                                 </ItemTemplate>
                             </asp:TemplateField>
+
                         </Columns>
                                  <EditRowStyle BackColor="#2461BF" />
 

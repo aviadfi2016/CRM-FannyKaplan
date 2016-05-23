@@ -50,7 +50,7 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/">דף הבית</a></li>
+                        <li><a runat="server" href="~/">דוחות</a></li>
                         <li><a runat="server" href="~/About">אודות</a></li>
                         <li><a runat="server" href="~/Contact">צור קשר</a></li>
                       
@@ -59,19 +59,25 @@
                         <AnonymousTemplate>
                             <ul class="nav navbar-nav navbar-right">
                             
-                                <li><a runat="server" href="/forms/searchItem.aspx"> חיפוש משתמש </a></li>
-                                <li><a runat="server" href="/forms/child.aspx"> משתמש ילד </a></li>
-                                <li><a runat="server" href="/forms/adult.aspx">  משתמש מבוגר </a></li>
-                                <li><a runat="server" href="/forms/Interest.aspx"> משתמש מתעניין </a></li>
+                                <li><a runat="server" href="/forms/searchItem.aspx"> חיפוש לקוח </a></li>
+                                <li><a runat="server" href="/forms/child.aspx"> לקוח-ילד </a></li>
+                                <li><a runat="server" href="/forms/adult.aspx">  לקוח-מבוגר </a></li>
+                                <li><a runat="server" href="/forms/Interest.aspx"> לקוח-מתעניין </a></li>
                                
                             </ul>
 
 
-                             <ul >
-
                                  
-                             <center> <img src="/images/newLogo.jpg"  style="width:200px;height:50px;align="middle"  /></center>
+                             <center>
+                                 
+                             <ul >
+                                 <li> 
+                                  <a  runat="server" href="~/">
+                                                                       
+                                  <img src="/images/logo1.jpg"  style="width:200px;height:50px;align="middle"  /></center>
 
+                                  </a>
+                            </li>  
                                  </ul>
 
                             

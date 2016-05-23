@@ -20,6 +20,10 @@ using System.Web.UI.WebControls.WebParts;
 namespace Myproject.forms
 {
 
+
+
+
+
     //establish a local connection to database
     public partial class adult : System.Web.UI.Page
     {
@@ -31,15 +35,47 @@ namespace Myproject.forms
             txtFirstName.Focus();
             if (!IsPostBack)
             {
+               
                 FillGrid();
+                
+
             }
+
+           
         }
         catch
         {
- 
+            
         }
  
     }
+
+        // function of the search button- filter the gridview by name
+   protected void Button1_Click(object sender, EventArgs e)
+   {
+
+
+       String str = "select* from tblCustomers where(FirstName like '%'+ @search+ '%') ";
+       SqlCommand xp = new SqlCommand(str, con);
+       xp.Parameters.Add("@search", SqlDbType.NVarChar).Value = txtsearch.Text;
+
+       con.Open();
+       xp.ExecuteNonQuery();
+       SqlDataAdapter da = new SqlDataAdapter();
+       da.SelectCommand = xp;
+       DataSet ds = new DataSet();
+       da.Fill(ds, "FirstName");
+       gvAdult.DataSource = ds;
+       gvAdult.DataBind();
+       con.Close();
+
+   }
+
+
+
+
+
+
 
    protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
    {
@@ -120,7 +156,15 @@ namespace Myproject.forms
        Response.End();
    }
 
-
+   //adding new klass to the ddl by the user
+   protected void AddItem(object sender, EventArgs e)
+   {
+       string Klass = txtNewKlass.Text.Trim();
+       if (!string.IsNullOrEmpty(Klass))
+       {
+           txtKlass.Items.Add(new ListItem(Klass, Klass));
+       }
+   }
 
 
  // first boot of the grid
@@ -129,7 +173,7 @@ namespace Myproject.forms
         try
         {
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "Select CustomerID,FirstName,LastName,Taz, DOB,Age, PhoneNumber,MobilePhone,Address,Email,Klass, Office, Date, Worker, Status from tblCustomers where IsActive=1";
+            cmd.CommandText = "Select CustomerID,FirstName,LastName,Taz, DOB,Age, PhoneNumber,MobilePhone,Address,ddl_Neighborhood, Email,Klass, Office, Date, Worker, Comments, InfoFaceBook from tblCustomers where IsActive=1";
             cmd.Connection = con;
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
@@ -157,12 +201,14 @@ namespace Myproject.forms
             txtPhoneNumber.Text = "";
             txtMobilePhone.Text = "";
             txtAddress.Text = "";
+            txtddl_Neighborhood.ClearSelection(); 
             txtEmail.Text = "";
-            txtKlass.Text = "";
-            txtOffice.Text = "";
+            txtKlass.ClearSelection();
+            txtOffice.ClearSelection();
             txtDate.Text = "";
             txtWorker.Text = "";
-            txtStatus.Text = "";
+            txtComments.Text = "";
+            InfoFaceBook.ClearSelection();
             hidCustomerID.Value = "";
             btnSave.Visible = true;
             btnUpdate.Visible = false;
@@ -179,7 +225,7 @@ namespace Myproject.forms
         try
         {
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "insert into tblCustomers (FirstName,LastName, Taz, DOB,Age, PhoneNumber,MobilePhone,Address,Email,Klass,Office,Date,Worker,Status,IsActive) values (@FirstName,@LastName,@Taz,@DOB,@Age,@PhoneNumber,@MobilePhone,@Address,@Email,@Klass,@Office,@Date,@Worker,@Status,1)";
+            cmd.CommandText = "insert into tblCustomers (FirstName,LastName, Taz, DOB,Age, PhoneNumber,MobilePhone,Address,ddl_Neighborhood,Email,Klass,Office,Date,Worker,Comments,InfoFaceBook,IsActive) values (@FirstName,@LastName,@Taz,@DOB,@Age,@PhoneNumber,@MobilePhone,@Address,@ddl_Neighborhood,@Email,@Klass,@Office,@Date,@Worker,@Comments,@InfoFaceBook,1)";
             cmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
             cmd.Parameters.AddWithValue("@LastName", txtLastName.Text);
             cmd.Parameters.AddWithValue("@Taz", txtTaz.Text);
@@ -188,12 +234,27 @@ namespace Myproject.forms
             cmd.Parameters.AddWithValue("@PhoneNumber", txtPhoneNumber.Text);
             cmd.Parameters.AddWithValue("@MobilePhone", txtMobilePhone.Text);
             cmd.Parameters.AddWithValue("@Address", txtAddress.Text);
+            cmd.Parameters.AddWithValue("@ddl_Neighborhood", txtddl_Neighborhood.SelectedItem.Value);
             cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
             cmd.Parameters.AddWithValue("@Klass", txtKlass.SelectedItem.Value);
-            cmd.Parameters.AddWithValue("@Office", txtOffice.Text);
+            cmd.Parameters.AddWithValue("@Office", txtOffice.SelectedItem.Value);
             cmd.Parameters.AddWithValue("@Date", txtDate.Text);
             cmd.Parameters.AddWithValue("@Worker", txtWorker.Text);
-            cmd.Parameters.AddWithValue("@Status", txtStatus.Text);
+            cmd.Parameters.AddWithValue("@Comments", txtComments.Text);
+
+            string s = "";
+            for (int i = 0; i < InfoFaceBook.Items.Count; i++)
+            {
+
+                if (InfoFaceBook.Items[i].Selected)//changed 1 to i 
+                    s += InfoFaceBook.Items[i].Text.ToString() + ""; //changed 1 to i
+            }
+
+            cmd.Parameters.AddWithValue("@InfoFaceBook", s);
+
+
+
+
             cmd.Connection = con;
             con.Open();
             cmd.ExecuteNonQuery();
@@ -248,16 +309,18 @@ namespace Myproject.forms
             txtPhoneNumber.Text = (grow.FindControl("lblPhoneNumber") as Label).Text;
             txtMobilePhone.Text = (grow.FindControl("lblMobilePhone") as Label).Text;
             txtAddress.Text = (grow.FindControl("lblAddress") as Label).Text;
+            txtddl_Neighborhood.Text = (grow.FindControl("lblddl_Neighborhood") as Label).Text;
             txtEmail.Text = (grow.FindControl("lblEmail") as Label).Text;
-
-          //doesnt work yet//  txtKlass.Text = (grow.FindControl("lblKlass") as Label).Text;
-
-            txtOffice.Text = (grow.FindControl("lblOffice") as Label).Text;
+            txtKlass.Text = (grow.FindControl("lblKlass") as Label).Text;
+            txtOffice.Text = (grow.FindControl("lblOffice") as Label).Text;     
             txtDate.Text = (grow.FindControl("lblDate") as Label).Text;
             txtWorker.Text = (grow.FindControl("lblWorker") as Label).Text;
-            txtStatus.Text = (grow.FindControl("lblStatus") as Label).Text;
+            txtComments.Text = (grow.FindControl("lblComments") as Label).Text;
+            InfoFaceBook.Text = (grow.FindControl("lblInfoFaceBook") as Label).Text;
             btnSave.Visible = false;
             btnUpdate.Visible = true;
+
+            
         }
         catch
         {
@@ -269,8 +332,10 @@ namespace Myproject.forms
     {
         try
         {
+
+
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "update tblCustomers set FirstName=@FirstName,LastName=@LastName,Taz=@Taz, DOB=@DOB,Age=@Age, PhoneNumber=@PhoneNumber,MobilePhone=@MobilePhone,Address=@Address, Email=@Email, Klass=@Klass, Office=@Office, Date=@Date, Worker=@Worker,Status=@Status where CustomerID=@CustomerID";
+            cmd.CommandText = "update tblCustomers set FirstName=@FirstName,LastName=@LastName,Taz=@Taz, DOB=@DOB,Age=@Age, PhoneNumber=@PhoneNumber,MobilePhone=@MobilePhone,Address=@Address,ddl_Neighborhood=@ddl_Neighborhood, Email=@Email, Klass=@Klass, Office=@Office, Date=@Date, Worker=@Worker,Comments=@Comments,InfoFaceBook=@InfoFaceBook where CustomerID=@CustomerID";
             cmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
             cmd.Parameters.AddWithValue("@LastName", txtLastName.Text);
             cmd.Parameters.AddWithValue("@Taz", txtTaz.Text);
@@ -279,12 +344,26 @@ namespace Myproject.forms
             cmd.Parameters.AddWithValue("@PhoneNumber", txtPhoneNumber.Text);
             cmd.Parameters.AddWithValue("@MobilePhone", txtMobilePhone.Text);
             cmd.Parameters.AddWithValue("@Address", txtAddress.Text);
+            cmd.Parameters.AddWithValue("@ddl_Neighborhood", txtddl_Neighborhood.SelectedItem.Value);
             cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
             cmd.Parameters.AddWithValue("@Klass", txtKlass.SelectedItem.Value);
-            cmd.Parameters.AddWithValue("@Office", txtOffice.Text);
+            cmd.Parameters.AddWithValue("@Office", txtOffice.SelectedItem.Value);       
             cmd.Parameters.AddWithValue("@Date", txtDate.Text);
             cmd.Parameters.AddWithValue("@Worker", txtWorker.Text);
-            cmd.Parameters.AddWithValue("@Status", txtStatus.Text);
+            cmd.Parameters.AddWithValue("@Comments", txtComments.Text);
+
+            string s = "";
+            for (int i = 0; i < InfoFaceBook.Items.Count; i++)
+            {
+
+                if (InfoFaceBook.Items[i].Selected)//changed 1 to i 
+                    s += InfoFaceBook.Items[i].Text.ToString() + ""; //changed 1 to i
+            }
+
+            cmd.Parameters.AddWithValue("@InfoFaceBook", s);
+
+
+
             cmd.Parameters.AddWithValue("@CustomerID", hidCustomerID.Value);
             cmd.Connection = con;
             con.Open();

@@ -5,10 +5,10 @@
     <div class="jumbotron">
         
         <p class="lead" dir="rtl">כאן תוכלו לנהל את המידע של לקוחותיכם -להוסיף,למחוק, לחדש ולחפש כל מידע רלוונטי לגבי הלקוחות שלכם </p>
-        <p class="lead" dir="rtl"><a href="/forms/searchItem.aspx" class="btn btn-primary btn-lg"> חיפוש משתמש קיים  &raquo;</a></p>
-        <p class="lead" dir="rtl"> <a href="/forms/child.aspx" class="btn btn-primary btn-lg"> משתמש חדש- ילד &raquo;</a></p>
-        <p class="lead" dir="rtl"><a href="/forms/adult.aspx" class="btn btn-primary btn-lg"> משתמש חדש- מבוגר &raquo;</a></p>
-        <p class="lead" dir="rtl"><a href="/forms/Interest.aspx" class="btn btn-primary btn-lg"> משתמש חדש מתעניין &raquo;</a></p>
+        <p class="lead" dir="rtl"><a href="/forms/searchItem.aspx" class="btn btn-primary btn-lg"> חיפוש לקוח קיים  &raquo;</a></p>
+        <p class="lead" dir="rtl"> <a href="/forms/child.aspx" class="btn btn-primary btn-lg"> לקוח-ילד &raquo;</a></p>
+        <p class="lead" dir="rtl"><a href="/forms/adult.aspx" class="btn btn-primary btn-lg"> לקוח-מבוגר &raquo;</a></p>
+        <p class="lead" dir="rtl"><a href="/forms/Interest.aspx" class="btn btn-primary btn-lg"> לקוח חדש מתעניין &raquo;</a></p>
     </div>
 
     <div class="row">

@@ -13,13 +13,37 @@ using System.Text;
 using System.Web.Security;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls.WebParts;
+using System.Collections.Specialized;
 
 
 namespace Myproject.forms
 {
     public partial class Interest : System.Web.UI.Page
     {
-        
+
+
+
+
+        // function of the search button- filter the gridview by name
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+
+
+            String str = "select* from tblInter where(FirstName like '%'+ @search+ '%') ";
+            SqlCommand xp = new SqlCommand(str, con);
+            xp.Parameters.Add("@search", SqlDbType.NVarChar).Value = txtsearch.Text;
+
+            con.Open();
+            xp.ExecuteNonQuery();
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = xp;
+            DataSet ds = new DataSet();
+            da.Fill(ds, "FirstName");
+            gvInter.DataSource = ds;
+            gvInter.DataBind();
+            con.Close();
+
+        }
 
         // export to excel
 
@@ -100,6 +124,7 @@ namespace Myproject.forms
         {
             try
             {
+
                 txtKlass.Focus();
                 if (!IsPostBack)
                 {
@@ -118,7 +143,7 @@ namespace Myproject.forms
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = "Select CustomerID,Klass,Age,FirstName,LastName,PhoneNumber,MobilePhone,Address,Email,Ways, Comments, Date,Worker from tblInter where IsActive=1";
+                cmd.CommandText = "Select CustomerID,Klass,ddl_type_user,FavDays,ddl_KlassTime,Age,FirstName,LastName,PhoneNumber,MobilePhone,Address,ddl_Neighborhood,Email,Ways, Comments, Date,Worker, Info from tblInter where IsActive=1";
                 cmd.Connection = con;
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataSet ds = new DataSet();
@@ -136,18 +161,24 @@ namespace Myproject.forms
         {
             try
             {
-                txtKlass.Text = "";
+                txtKlass.ClearSelection();
+                txtddl_type_user.ClearSelection();
+                txtFavDays.Text = "";
+                txtddl_KlassTime.ClearSelection();
                 txtAge.Text = "";
                 txtFirstName.Text = "";
                 txtLastName.Text = "";
                 txtPhoneNumber.Text = "";
                 txtMobilePhone.Text = "";
                 txtAddress.Text = "";
+                txtddl_Neighborhood.ClearSelection(); 
                 txtEmail.Text = "";
                 txtWays.Text = "";
                 txtDate.Text = "";
                 txtWorker.Text = "";
                 txtComments.Text = "";
+                InfoBox.ClearSelection();
+              
                 hidCustomerID.Value = "";
                 btnSave.Visible = true;
                 btnUpdate.Visible = false;
@@ -158,25 +189,53 @@ namespace Myproject.forms
                 throw;
             }
         }
+        //adding new klass to the ddl by the user
+        protected void AddItem(object sender, EventArgs e)
+        {
+            string Klass = txtNewKlass.Text.Trim();
+            if (!string.IsNullOrEmpty(Klass))
+            {
+                txtKlass.Items.Add(new ListItem(Klass, Klass));
+            }
+        }
+
+
+
         // function of the save buttun
         protected void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = "insert into tblInter (Klass,Age,FirstName, LastName,PhoneNumber,MobilePhone,Address,Email,Ways,Comments,Date,Worker,IsActive) values (@Klass,@Age,@FirstName, @LastName,@PhoneNumber,@MobilePhone,@Address,@Email,@Ways,@Comments,@Date,@Worker,1)";
+                cmd.CommandText = "insert into tblInter (Klass,ddl_type_user,FavDays, ddl_KlassTime,Age,FirstName, LastName,PhoneNumber,MobilePhone,Address,ddl_Neighborhood,Email,Ways,Comments,Date,Worker,Info, IsActive) values (@Klass,@ddl_type_user,@FavDays,@ddl_KlassTime, @Age,@FirstName, @LastName,@PhoneNumber,@MobilePhone,@Address,@ddl_Neighborhood,@Email,@Ways,@Comments,@Date,@Worker,@Info, 1)";
                 cmd.Parameters.AddWithValue("@Klass", txtKlass.SelectedItem.Value);
+                cmd.Parameters.AddWithValue("@ddl_type_user", txtddl_type_user.SelectedItem.Value);
+                cmd.Parameters.AddWithValue("@FavDays", txtFavDays.Text);
+                cmd.Parameters.AddWithValue("@ddl_KlassTime", txtddl_KlassTime.SelectedItem.Value);
                 cmd.Parameters.AddWithValue("@Age", txtAge.Text);
                 cmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
                 cmd.Parameters.AddWithValue("@LastName", txtLastName.Text);
                 cmd.Parameters.AddWithValue("@PhoneNumber", txtPhoneNumber.Text);
                 cmd.Parameters.AddWithValue("@MobilePhone", txtMobilePhone.Text);
                 cmd.Parameters.AddWithValue("@Address", txtAddress.Text);
+                cmd.Parameters.AddWithValue("@ddl_Neighborhood", txtddl_Neighborhood.SelectedItem.Value);
                 cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
                 cmd.Parameters.AddWithValue("@Ways", txtWays.Text);
                 cmd.Parameters.AddWithValue("@Comments", txtComments.Text);
                 cmd.Parameters.AddWithValue("@Date", txtDate.Text);
                 cmd.Parameters.AddWithValue("@Worker", txtWorker.Text);
+
+
+                string s="";
+                for (int i = 0; i < InfoBox.Items.Count; i++)
+                {
+                   
+                    if (InfoBox.Items[i].Selected)//changed 1 to i 
+                        s += InfoBox.Items[i].Text.ToString()+"" ; //changed 1 to i
+                }
+
+                cmd.Parameters.AddWithValue("@Info", s);
+         
                 cmd.Connection = con;
                 con.Open();
                 cmd.ExecuteNonQuery();
@@ -184,6 +243,8 @@ namespace Myproject.forms
                 FillGrid();
                 ClearControls();
                 lblMessage.Text = "נשמר בהצלחה";
+
+                
             }
             catch
             {
@@ -195,6 +256,11 @@ namespace Myproject.forms
                     con.Close();
             }
         }
+
+
+
+
+        
         // function of the clear buttun
         protected void btnClear_Click(object sender, EventArgs e)
         {
@@ -217,17 +283,23 @@ namespace Myproject.forms
                 GridViewRow grow = btn.NamingContainer as GridViewRow;
                 hidCustomerID.Value = (grow.FindControl("lblCustomerID") as Label).Text;
                 txtKlass.Text = (grow.FindControl("lblKlass") as Label).Text;
+                txtddl_type_user.Text = (grow.FindControl("lblddl_type_user") as Label).Text;
+                txtFavDays.Text = (grow.FindControl("lblFavDays") as Label).Text;
+                txtddl_KlassTime.Text = (grow.FindControl("lblddl_KlassTime") as Label).Text;
                 txtAge.Text = (grow.FindControl("lblAge") as Label).Text;
                 txtFirstName.Text = (grow.FindControl("lblFirstName") as Label).Text;
                 txtLastName.Text = (grow.FindControl("lblLastName") as Label).Text;
                 txtPhoneNumber.Text = (grow.FindControl("lblPhoneNumber") as Label).Text;
                 txtMobilePhone.Text = (grow.FindControl("lblMobilePhone") as Label).Text;
                 txtAddress.Text = (grow.FindControl("lblAddress") as Label).Text;
+                txtddl_Neighborhood.Text = (grow.FindControl("lblddl_Neighborhood") as Label).Text;
                 txtEmail.Text = (grow.FindControl("lblEmail") as Label).Text;
                 txtWays.Text = (grow.FindControl("lblWays") as Label).Text;
                 txtComments.Text = (grow.FindControl("lblComments") as Label).Text;
                 txtDate.Text = (grow.FindControl("lblDate") as Label).Text;
                 txtWorker.Text = (grow.FindControl("lblWorker") as Label).Text;
+                InfoBox.Text = (grow.FindControl("lblInfoBox") as Label).Text;
+          
                 btnSave.Visible = false;
                 btnUpdate.Visible = true;
             }
@@ -242,19 +314,44 @@ namespace Myproject.forms
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = "update tblInter set Klass=@Klass,Age=@Age, FirstName=@FirstName, LastName=@LastName,PhoneNumber=@PhoneNumber,MobilePhone=@MobilePhone,Address=@Address, Email=@Email,Ways=@Ways, Comments=@Comments, Date=@Date , Worker=@Worker where CustomerID=@CustomerID";
+                cmd.CommandText = "update tblInter set Klass=@Klass,ddl_type_user=@ddl_type_user,FavDays=@FavDays,ddl_KlassTime=@ddl_KlassTime,Age=@Age, FirstName=@FirstName, LastName=@LastName,PhoneNumber=@PhoneNumber,MobilePhone=@MobilePhone,Address=@Address,ddl_Neighborhood=@ddl_Neighborhood, Email=@Email,Ways=@Ways, Comments=@Comments, Date=@Date , Worker=@Worker,Info=@Info where CustomerID=@CustomerID";
                 cmd.Parameters.AddWithValue("@Klass", txtKlass.SelectedItem.Value);
+                cmd.Parameters.AddWithValue("@ddl_type_user", txtddl_type_user.SelectedItem.Value);
+                cmd.Parameters.AddWithValue("@FavDays", txtFavDays.Text);
+                cmd.Parameters.AddWithValue("@ddl_KlassTime", txtddl_KlassTime.SelectedItem.Value);
                 cmd.Parameters.AddWithValue("@Age", txtAge.Text);
                 cmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
                 cmd.Parameters.AddWithValue("@LastName", txtLastName.Text);
                 cmd.Parameters.AddWithValue("@PhoneNumber", txtPhoneNumber.Text);
-                cmd.Parameters.AddWithValue("@MobilePhone", txtMobilePhone.Text);
+                cmd.Parameters.AddWithValue("@MobilePhone", txtMobilePhone.Text);   
                 cmd.Parameters.AddWithValue("@Address", txtAddress.Text);
+                cmd.Parameters.AddWithValue("@ddl_Neighborhood", txtddl_Neighborhood.SelectedItem.Value);
                 cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
                 cmd.Parameters.AddWithValue("@Ways", txtWays.Text);
                 cmd.Parameters.AddWithValue("@Date", txtDate.Text);
                 cmd.Parameters.AddWithValue("@Comments", txtComments.Text);
                 cmd.Parameters.AddWithValue("@Worker", txtWorker.Text);
+
+                string s = "";
+                for (int i = 0; i < InfoBox.Items.Count ; i++)
+                {
+
+                    if (InfoBox.Items[i].Selected)//changed 1 to i 
+                        s += InfoBox.Items[i].Text.ToString()+"" ; //changed 1 to i
+                }
+
+                cmd.Parameters.AddWithValue("@Info", s);
+
+
+
+
+
+
+
+
+
+
+
                 cmd.Parameters.AddWithValue("@CustomerID", hidCustomerID.Value);
                 cmd.Connection = con;
                 con.Open();
