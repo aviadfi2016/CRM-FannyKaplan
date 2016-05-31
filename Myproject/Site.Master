@@ -15,7 +15,7 @@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     
 </head>
-<body>
+<body  background="/images/Abstract_Background_with_Blue_Triangles.jpg"  >
     <form runat="server">
         <asp:ScriptManager runat="server">
             <Scripts>
@@ -48,16 +48,16 @@
                     </button>
                     <a class="navbar-brand" runat="server"> </a>
                 </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/">דוחות</a></li>
+                <div class="navbar-collapse collapse" >
+                    <ul class="nav navbar-nav" >
+                        <li><a runat="server" href="~/forms/Reports.aspx">דוחות</a></li>
                         <li><a runat="server" href="~/About">אודות</a></li>
                         <li><a runat="server" href="~/Contact">צור קשר</a></li>
                       
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
-                            <ul class="nav navbar-nav navbar-right">
+                            <ul class="nav navbar-nav navbar-right"  >
                             
                                 <li><a runat="server" href="/forms/searchItem.aspx"> חיפוש לקוח </a></li>
                                 <li><a runat="server" href="/forms/child.aspx"> לקוח-ילד </a></li>
@@ -74,7 +74,7 @@
                                  <li> 
                                   <a  runat="server" href="~/">
                                                                        
-                                  <img src="/images/logo1.jpg"  style="width:200px;height:50px;align="middle"  /></center>
+                                  <img src="/images/logo1.jpg"  style="width:200px;height:65px;align="middle"  /></center>
 
                                   </a>
                             </li>  

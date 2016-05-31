@@ -1,6 +1,6 @@
 ﻿
 
-<%@ Page Title="משתמש חדש- מבוגר" Language="C#" MasterPageFile="~/Site.Master"  AutoEventWireup="true"  enableEventValidation ="false" Codefile="adult.aspx.cs" Inherits="Myproject.forms.adult" %>
+<%@ Page Title="משתמש חדש- מבוגר" Language="C#" MasterPageFile="~/Site.Master"  AutoEventWireup="true"  enableEventValidation ="false" CodeBehind="adult.aspx.cs" Inherits="Myproject.forms.adult" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <body dir="rtl" >
     <h2><%: Title %></h2>
@@ -23,8 +23,6 @@
                             <td>
                                 <asp:TextBox ID="txtFirstName" runat="server" MaxLength="50" Width="250px"></asp:TextBox>
 
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1"   forecolor="Red" controltovalidate="txtFirstName"  runat="server" ErrorMessage="נא הזן שם פרטי"></asp:RequiredFieldValidator>
-
                             </td>
                         </tr>
                         <tr>
@@ -34,7 +32,7 @@
                             <td>
                                 <asp:TextBox ID="txtLastName" runat="server" MaxLength="50" Width="250px"></asp:TextBox>
 
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2"   forecolor="Red" controltovalidate="txtLastName"  runat="server" ErrorMessage="נא הזן שם משפחה"></asp:RequiredFieldValidator>
+                              
                             </td>
                         </tr>
 
@@ -82,8 +80,7 @@
                                 <asp:TextBox ID="txtAge" runat="server" MaxLength="50" Width="50px"></asp:TextBox>
                                
                                
-                               <asp:rangevalidator errormessage="גיל לא בתווך" forecolor="Red" controltovalidate="txtAge" minimumvalue="18" maximumvalue="99" runat="server">
-            </asp:rangevalidator></td>
+              
 
 
                             </td>
@@ -98,7 +95,7 @@
                             </td>
                             <td>
                                 <asp:TextBox ID="txtPhoneNumber" runat="server" MaxLength="10" Width="250px"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4"   forecolor="Red" controltovalidate="txtPhoneNumber"  runat="server" ErrorMessage="נא הזן מס' טלפון"></asp:RequiredFieldValidator>
+                             
                             </td>
                         </tr>
                         <tr>
@@ -108,7 +105,7 @@
                             <td>
                                 <asp:TextBox ID="txtMobilePhone" runat="server" MaxLength="50" Width="250px"></asp:TextBox>
 
-                                   <asp:RequiredFieldValidator ID="RequiredFieldValidator5"   forecolor="Red" controltovalidate="txtMobilePhone"  runat="server" ErrorMessage=" נא הזן מס' טלפון נייד"></asp:RequiredFieldValidator> 
+                            
                             </td>
                         </tr>
                         <tr>
@@ -165,12 +162,13 @@
                                     <asp:ListItem>אנגלית</asp:ListItem>
                                     <asp:ListItem>בלט</asp:ListItem>
                                     <asp:ListItem>ג&#39;אז</asp:ListItem>
-                                    <asp:ListItem>פיסולהשלמת השכלה</asp:ListItem>
+                                    <asp:ListItem>השלמת השכלה</asp:ListItem>
                                     <asp:ListItem>זומבה</asp:ListItem>
                                     <asp:ListItem>יוגה</asp:ListItem>
                                     <asp:ListItem>לימודיה</asp:ListItem>
                                     <asp:ListItem>מחשבים</asp:ListItem>
                                     <asp:ListItem>ספריה</asp:ListItem> 
+                                    <asp:ListItem>פיסול</asp:ListItem>
                                     <asp:ListItem>פלאטיס</asp:ListItem>
                                     <asp:ListItem>ציור</asp:ListItem>
                                     <asp:ListItem>קרטה</asp:ListItem>
@@ -310,7 +308,7 @@
                 <td dir="rtl">
 
                     	
-                             <asp:LinkButton ID="lnkExport" runat="server" Text="יצוא לאקסל" onclick="lnkExport_Click"></asp:LinkButton>
+                             <asp:LinkButton ID="lnkExport" runat="server" Text="יצוא לאקסל" onclick="lnkExport_Click"  ForeColor="Red"></asp:LinkButton>
                         
                         
                         

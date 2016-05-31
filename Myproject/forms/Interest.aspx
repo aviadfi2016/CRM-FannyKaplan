@@ -1,6 +1,6 @@
 ﻿
 
-<%@ Page Title="לקוח מתעניין" Language="C#" MasterPageFile="~/Site.Master" enableEventValidation ="false"  AutoEventWireup="true" Codefile="Interest.aspx.cs" Inherits="Myproject.forms.Interest" %>
+<%@ Page Title="לקוח מתעניין" Language="C#" MasterPageFile="~/Site.Master" enableEventValidation ="false"  AutoEventWireup="true" CodeBehind="Interest.aspx.cs" Inherits="Myproject.forms.Interest" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <body dir="rtl">
     <h2 ><%: Title %></h2>
@@ -20,19 +20,20 @@
                             </td>
                             <td>
                               
-                                 <asp:DropDownList ID="txtKlass" runat="server" EnableTheming="False" EnableViewState="False">
+                                 <asp:DropDownList ID="txtKlass" runat="server"  >
                                     <asp:ListItem Value="15">-- בחר חוג--</asp:ListItem> 
                                     <asp:ListItem>אולפן רפואי</asp:ListItem>
                                     <asp:ListItem>אולפן תעסוקתי</asp:ListItem>
                                     <asp:ListItem>אנגלית</asp:ListItem>
                                     <asp:ListItem>בלט</asp:ListItem>
                                     <asp:ListItem>ג&#39;אז</asp:ListItem>
-                                    <asp:ListItem>פיסולהשלמת השכלה</asp:ListItem>
+                                    <asp:ListItem>השלמת השכלה</asp:ListItem>
                                     <asp:ListItem>זומבה</asp:ListItem>
                                     <asp:ListItem>יוגה</asp:ListItem>
                                     <asp:ListItem>לימודיה</asp:ListItem>
                                     <asp:ListItem>מחשבים</asp:ListItem>
-                                    <asp:ListItem>ספריה</asp:ListItem>  
+                                    <asp:ListItem>ספריה</asp:ListItem>
+                                     <asp:ListItem>פיסול</asp:ListItem>  
                                     <asp:ListItem>פלאטיס</asp:ListItem>
                                     <asp:ListItem>ציור</asp:ListItem>
                                     <asp:ListItem>קרטה</asp:ListItem>
@@ -248,6 +249,11 @@
 
 
                                 <asp:Button ID="btnClear" runat="server" Text="נקה"  OnClick="btnClear_Click" />
+
+
+
+
+                           
                                 
                             </td>
                         </tr>
@@ -265,7 +271,7 @@
             </tr>
             <tr dir="rtl">
                 <td dir="rtl">
-                        <asp:LinkButton ID="lnkExport" runat="server" Text="יצוא לאקסל" onclick="lnkExport_Click"></asp:LinkButton>
+                        <asp:LinkButton ID="lnkExport" runat="server" Text="יצוא לאקסל" onclick="lnkExport_Click"  ForeColor="Red"></asp:LinkButton>
                        
                  
                    
@@ -388,6 +394,9 @@
                                     <asp:Button ID="btnDelete" runat="server" Text="מחק"  OnClientClick="האם למחוק???"  OnClick="btnDelete_Click" />
                                     <asp:Label ID="lblCustomerID" runat="server" Text='<%#Eval("CustomerID") %>' Visible="false"></asp:Label>
                                     
+                                  
+
+
                                 </ItemTemplate>
                             </asp:TemplateField>
 

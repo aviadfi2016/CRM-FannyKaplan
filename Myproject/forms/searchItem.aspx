@@ -1,4 +1,4 @@
-﻿<%@ Page Title="חיפוש משתמש" Language="C#" MasterPageFile="~/Site.Master"  AutoEventWireup="true" Codefile="searchItem.aspx.cs" Inherits="Myproject.forms.searchItem" %>
+﻿<%@ Page Title="חיפוש משתמש" Language="C#" MasterPageFile="~/Site.Master"  AutoEventWireup="true" CodeBehind="searchItem.aspx.cs" Inherits="Myproject.forms.searchItem" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <body dir="rtl">
     <h2 ><%: Title %></h2>
@@ -35,7 +35,9 @@
             
     <asp:Button ID="btnSearch_Click" runat="server" onclick="btnSearch_Click_Click" 
         Text="חיפוש " />
-           <asp:GridView ID="gvAdult" runat="server" AutoGenerateColumns="False" ShowHeaderWhenEmpty="True"
+
+
+                    <asp:GridView ID="gvAdult" runat="server" AutoGenerateColumns="False" ShowHeaderWhenEmpty="True"
                         EmptyDataText="לא נמצאו רשומות" GridLines="Vertical" CssClass="gv" EmptyDataRowStyle-ForeColor="Red" CellPadding="4" ForeColor="#333333">
                                  <AlternatingRowStyle BackColor="White" />
                         <Columns >
@@ -90,6 +92,13 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
+                            <asp:TemplateField HeaderText="שכונה">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblddl_Neighborhood" runat="server" Text='<%#Eval("ddl_Neighborhood") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+
                             <asp:TemplateField HeaderText="דואר אלקטרוני">
                                 <ItemTemplate>
                                     <asp:Label ID="lblEmail" runat="server" Text='<%#Eval("Email") %>'></asp:Label>
@@ -101,7 +110,7 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="פעולה משרדית" >
+                            <asp:TemplateField HeaderText="סטטוס" >
                                 <ItemTemplate>
                                     <asp:Label ID="lblOffice" runat="server" Text='<%#Eval("Office") %>'></asp:Label>
                                 </ItemTemplate>
@@ -117,13 +126,16 @@
                                     <asp:Label ID="lblWorker" runat="server" Text='<%#Eval("Worker") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="סטטוס" >
+                            <asp:TemplateField HeaderText="הערות" >
                                 <ItemTemplate>
-                                    <asp:Label ID="lblStatus" runat="server" Text='<%#Eval("Status") %>'></asp:Label>
+                                    <asp:Label ID="lblComments" runat="server" Text='<%#Eval("Comments") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                              
-
+                            <asp:TemplateField HeaderText="פייסבוק" >
+                                <ItemTemplate>
+                                    <asp:Label ID="lblInfoFaceBook" runat="server" Text='<%#Eval("InfoFaceBook") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
             </Columns>
                                   <EditRowStyle BackColor="#2461BF" />
 
@@ -138,10 +150,10 @@
                                  <SortedDescendingCellStyle BackColor="#E9EBEF" />
                                  <SortedDescendingHeaderStyle BackColor="#4870BE" />
                     </asp:GridView>
-        </asp:GridView>
+     
 
 
-            <asp:GridView ID="gvChildren" runat="server" AutoGenerateColumns="False" ShowHeaderWhenEmpty="True"
+          <asp:GridView ID="gvChildren" runat="server" AutoGenerateColumns="False" ShowHeaderWhenEmpty="True"
                         EmptyDataText="לא נמצאו רשומות" GridLines="Vertical" CssClass="gv" EmptyDataRowStyle-ForeColor="Red" CellPadding="4" ForeColor="#333333" Width="1200px" HorizontalAlign="Justify">
                                  <AlternatingRowStyle BackColor="White" />
                         <Columns >
@@ -191,6 +203,12 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
+                            <asp:TemplateField HeaderText="שכונה">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblddl_Neighborhood" runat="server" Text='<%#Eval("ddl_Neighborhood") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
 
                             <asp:TemplateField HeaderText="דואר אלקטרוני">
                                 <ItemTemplate>
@@ -224,7 +242,7 @@
                                     <asp:Label ID="lblHMO" runat="server" Text='<%#Eval("HMO") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                             <asp:TemplateField HeaderText="פעולה משרדית" >
+                             <asp:TemplateField HeaderText="סטטוס" >
                                 <ItemTemplate>
                                     <asp:Label ID="lblOffice" runat="server" Text='<%#Eval("Office") %>'></asp:Label>
                                 </ItemTemplate>
@@ -237,6 +255,17 @@
                             <asp:TemplateField HeaderText="שם העובד" >
                                 <ItemTemplate>
                                     <asp:Label ID="lblWorker" runat="server" Text='<%#Eval("Worker") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="הערות" >
+                                <ItemTemplate>
+                                    <asp:Label ID="lblComments" runat="server" Text='<%#Eval("Comments") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                             <asp:TemplateField HeaderText="פייסבוק" >
+                                <ItemTemplate>
+                                    <asp:Label ID="lblInfoFaceBook" runat="server" Text='<%#Eval("InfoFaceBook") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
 
@@ -261,18 +290,43 @@
 
 
 
-                  <asp:GridView ID="gvInter" runat="server" AutoGenerateColumns="False" ShowHeaderWhenEmpty="True"
+                   <asp:GridView ID="gvInter" runat="server" AutoGenerateColumns="False" ShowHeaderWhenEmpty="True"
                         EmptyDataText="לא נמצאו רשומות" GridLines="Vertical" CssClass="gv" EmptyDataRowStyle-ForeColor="Red" CellPadding="4" ForeColor="#333333">
                                  <AlternatingRowStyle BackColor="White" />
 
 
                         <Columns >
- 
+
+    
+
+
+
+
+                    
                             <asp:TemplateField HeaderText="תחום התעניינות">
                                 <ItemTemplate>
                                     <asp:Label ID="lblKlass" runat="server" Text='<%#Eval("Klass") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
+                            <asp:TemplateField HeaderText="סוג לקוח">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblddl_type_user" runat="server" Text='<%#Eval("ddl_type_user") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="ימים מועדפים">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblFavDays" runat="server" Text='<%#Eval("FavDays") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+
+                            <asp:TemplateField HeaderText="זמן החוג">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblddl_KlassTime" runat="server" Text='<%#Eval("ddl_KlassTime") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                           
+
                             <asp:TemplateField HeaderText="גיל">
                                 <ItemTemplate>
                                     <asp:Label ID="lblAge" runat="server" Text='<%#Eval("Age") %>'></asp:Label>
@@ -303,6 +357,11 @@
                                     <asp:Label ID="lblAddress" runat="server" Text='<%#Eval("Address") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
+                             <asp:TemplateField HeaderText="שכונה">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblddl_Neighborhood" runat="server" Text='<%#Eval("ddl_Neighborhood") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
                             <asp:TemplateField HeaderText="כתובת דואר אלקטרוני" >
                                 <ItemTemplate>
                                     <asp:Label ID="lblEmail" runat="server" Text='<%#Eval("Email") %>'></asp:Label>
@@ -326,6 +385,13 @@
                             <asp:TemplateField HeaderText="שם העובד" >
                                 <ItemTemplate>
                                     <asp:Label ID="lblWorker" runat="server" Text='<%#Eval("Worker") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                           <asp:TemplateField HeaderText="קבלת מידע" >
+                                <ItemTemplate>
+                                    <asp:Label ID="lblInfoBox" runat="server" Text='<%#Eval("Info")%>'></asp:Label>
+              
+                                   
                                 </ItemTemplate>
                             </asp:TemplateField>
 

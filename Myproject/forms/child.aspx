@@ -1,6 +1,6 @@
 ﻿
 
-<%@ Page Title="משתמש חדש- ילד" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" enableEventValidation ="false" Codefile="child.aspx.cs" Inherits="Myproject.forms.child" %>
+<%@ Page Title="משתמש חדש- ילד" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" enableEventValidation ="false" CodeBehind="Child.aspx.cs" Inherits="Myproject.forms.Child" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <body dir="rtl" >
@@ -161,12 +161,13 @@
                                     <asp:ListItem>אנגלית</asp:ListItem>
                                     <asp:ListItem>בלט</asp:ListItem>
                                     <asp:ListItem>ג&#39;אז</asp:ListItem>
-                                    <asp:ListItem>פיסולהשלמת השכלה</asp:ListItem>
+                                    <asp:ListItem>השלמת השכלה</asp:ListItem>
                                     <asp:ListItem>זומבה</asp:ListItem>
                                     <asp:ListItem>יוגה</asp:ListItem>
                                     <asp:ListItem>לימודיה</asp:ListItem>
                                     <asp:ListItem>מחשבים</asp:ListItem>
-                                    <asp:ListItem>ספריה</asp:ListItem>    
+                                    <asp:ListItem>ספריה</asp:ListItem>
+                                    <asp:ListItem>פיסול</asp:ListItem>    
                                     <asp:ListItem>פלאטיס</asp:ListItem>
                                     <asp:ListItem>ציור</asp:ListItem>
                                     <asp:ListItem>קרטה</asp:ListItem>
@@ -324,7 +325,7 @@
                 <td dir="rtl">
 
 
-                    <asp:LinkButton ID="lnkExport" runat="server" Text="יצוא לאקסל" onclick="lnkExport_Click"></asp:LinkButton>
+                    <asp:LinkButton ID="lnkExport" runat="server" Text="יצוא לאקסל" onclick="lnkExport_Click"  ForeColor="Red"></asp:LinkButton>
                     
                              <asp:GridView ID="gvChildren" runat="server" AutoGenerateColumns="False" ShowHeaderWhenEmpty="True"
                         EmptyDataText="לא נמצאו רשומות" GridLines="Vertical" CssClass="gv" EmptyDataRowStyle-ForeColor="Red" CellPadding="4" ForeColor="#333333" Width="1200px" HorizontalAlign="Justify">
@@ -449,8 +450,11 @@
                                     <asp:Button ID="btnEdit" runat="server" Text="ערוך" OnClick="btnEdit_Click" />
                                     <asp:Button ID="btnDelete" runat="server" Text="מחק"  OnClientClick="האם למחוק???"  OnClick="btnDelete_Click" />
                                     <asp:Label ID="lblCustomerID" runat="server" Text='<%#Eval("CustomerID") %>' Visible="false"></asp:Label>
+
                                 </ItemTemplate>
                             </asp:TemplateField>
+
+
                         </Columns>
                                  <EditRowStyle BackColor="#2461BF" />
 

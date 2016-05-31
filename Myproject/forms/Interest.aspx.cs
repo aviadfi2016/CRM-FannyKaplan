@@ -23,6 +23,16 @@ namespace Myproject.forms
 
 
 
+     
+
+
+
+
+
+
+
+
+        
 
         // function of the search button- filter the gridview by name
         protected void Button1_Click(object sender, EventArgs e)
@@ -122,6 +132,23 @@ namespace Myproject.forms
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=D:\final project\version\14\Myproject\Myproject\App_Data\Data1.mdf;Integrated Security=True");
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            if (Session["username"] == null)
+            {
+
+
+                Response.Redirect("~/loginPage.aspx");
+
+
+            }
+            else
+            {
+
+
+
+            }
+
+
             try
             {
 
@@ -161,6 +188,9 @@ namespace Myproject.forms
         {
             try
             {
+
+
+                txtNewKlass.Text = "";
                 txtKlass.ClearSelection();
                 txtddl_type_user.ClearSelection();
                 txtFavDays.Text = "";
@@ -171,14 +201,14 @@ namespace Myproject.forms
                 txtPhoneNumber.Text = "";
                 txtMobilePhone.Text = "";
                 txtAddress.Text = "";
-                txtddl_Neighborhood.ClearSelection(); 
+                txtddl_Neighborhood.ClearSelection();
                 txtEmail.Text = "";
                 txtWays.Text = "";
                 txtDate.Text = "";
                 txtWorker.Text = "";
                 txtComments.Text = "";
                 InfoBox.ClearSelection();
-              
+
                 hidCustomerID.Value = "";
                 btnSave.Visible = true;
                 btnUpdate.Visible = false;
@@ -226,16 +256,16 @@ namespace Myproject.forms
                 cmd.Parameters.AddWithValue("@Worker", txtWorker.Text);
 
 
-                string s="";
+                string s = "";
                 for (int i = 0; i < InfoBox.Items.Count; i++)
                 {
-                   
+
                     if (InfoBox.Items[i].Selected)//changed 1 to i 
-                        s += InfoBox.Items[i].Text.ToString()+"" ; //changed 1 to i
+                        s += InfoBox.Items[i].Text.ToString() + ""; //changed 1 to i
                 }
 
                 cmd.Parameters.AddWithValue("@Info", s);
-         
+
                 cmd.Connection = con;
                 con.Open();
                 cmd.ExecuteNonQuery();
@@ -244,7 +274,7 @@ namespace Myproject.forms
                 ClearControls();
                 lblMessage.Text = "נשמר בהצלחה";
 
-                
+
             }
             catch
             {
@@ -260,7 +290,7 @@ namespace Myproject.forms
 
 
 
-        
+
         // function of the clear buttun
         protected void btnClear_Click(object sender, EventArgs e)
         {
@@ -299,7 +329,7 @@ namespace Myproject.forms
                 txtDate.Text = (grow.FindControl("lblDate") as Label).Text;
                 txtWorker.Text = (grow.FindControl("lblWorker") as Label).Text;
                 InfoBox.Text = (grow.FindControl("lblInfoBox") as Label).Text;
-          
+
                 btnSave.Visible = false;
                 btnUpdate.Visible = true;
             }
@@ -323,7 +353,7 @@ namespace Myproject.forms
                 cmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
                 cmd.Parameters.AddWithValue("@LastName", txtLastName.Text);
                 cmd.Parameters.AddWithValue("@PhoneNumber", txtPhoneNumber.Text);
-                cmd.Parameters.AddWithValue("@MobilePhone", txtMobilePhone.Text);   
+                cmd.Parameters.AddWithValue("@MobilePhone", txtMobilePhone.Text);
                 cmd.Parameters.AddWithValue("@Address", txtAddress.Text);
                 cmd.Parameters.AddWithValue("@ddl_Neighborhood", txtddl_Neighborhood.SelectedItem.Value);
                 cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
@@ -333,11 +363,11 @@ namespace Myproject.forms
                 cmd.Parameters.AddWithValue("@Worker", txtWorker.Text);
 
                 string s = "";
-                for (int i = 0; i < InfoBox.Items.Count ; i++)
+                for (int i = 0; i < InfoBox.Items.Count; i++)
                 {
 
                     if (InfoBox.Items[i].Selected)//changed 1 to i 
-                        s += InfoBox.Items[i].Text.ToString()+"" ; //changed 1 to i
+                        s += InfoBox.Items[i].Text.ToString() + ""; //changed 1 to i
                 }
 
                 cmd.Parameters.AddWithValue("@Info", s);

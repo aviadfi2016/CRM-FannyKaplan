@@ -16,10 +16,10 @@ using System.Web.UI.WebControls.WebParts;
 
 namespace Myproject.forms
 {
-    public partial class child : System.Web.UI.Page
+    public partial class Child : System.Web.UI.Page
     {
 
-      
+
 
 
 
@@ -113,6 +113,31 @@ namespace Myproject.forms
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=D:\final project\version\14\Myproject\Myproject\App_Data\Data1.mdf;Integrated Security=True");
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            if (Session["username"] == null)
+            {
+
+
+                Response.Redirect("~/loginPage.aspx");
+
+
+            }
+            else
+            {
+
+
+
+            }
+
+
+
+
+
+
+
+
+
+
             try
             {
                 txtFatherName.Focus();
@@ -120,6 +145,8 @@ namespace Myproject.forms
                 {
                     FillGrid();
                 }
+
+
             }
             catch
             {
@@ -196,6 +223,8 @@ namespace Myproject.forms
         {
             try
             {
+
+                txtNewKlass.Text = "";
                 txtFatherName.Text = "";
                 txtMotherName.Text = "";
                 txtLastName.Text = "";
@@ -205,7 +234,7 @@ namespace Myproject.forms
                 txtPhoneNumber.Text = "";
                 txtMobilePhone.Text = "";
                 txtAddress.Text = "";
-                txtddl_Neighborhood.ClearSelection(); 
+                txtddl_Neighborhood.ClearSelection();
                 txtEmail.Text = "";
                 txtKlass.ClearSelection();
                 txtGrade.Text = "";
@@ -353,7 +382,7 @@ namespace Myproject.forms
                 cmd.Parameters.AddWithValue("@Grade", txtGrade.Text);
                 cmd.Parameters.AddWithValue("@School", txtSchool.Text);
                 cmd.Parameters.AddWithValue("@HMO", txtHMO.Text);
-                cmd.Parameters.AddWithValue("@Office", txtOffice.SelectedItem.Value); 
+                cmd.Parameters.AddWithValue("@Office", txtOffice.SelectedItem.Value);
                 cmd.Parameters.AddWithValue("@Date", txtDate.Text);
                 cmd.Parameters.AddWithValue("@Worker", txtWorker.Text);
                 cmd.Parameters.AddWithValue("@Comments", txtComments.Text);

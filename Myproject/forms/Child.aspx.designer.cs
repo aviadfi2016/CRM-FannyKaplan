@@ -10,7 +10,7 @@
 namespace Myproject.forms {
     
     
-    public partial class adult {
+    public partial class Child {
         
         /// <summary>
         /// txtsearch control.
@@ -31,13 +31,22 @@ namespace Myproject.forms {
         protected global::System.Web.UI.WebControls.Button Button1;
         
         /// <summary>
-        /// txtFirstName control.
+        /// txtFatherName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFirstName;
+        protected global::System.Web.UI.WebControls.TextBox txtFatherName;
+        
+        /// <summary>
+        /// txtMotherName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMotherName;
         
         /// <summary>
         /// txtLastName control.
@@ -47,6 +56,15 @@ namespace Myproject.forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtLastName;
+        
+        /// <summary>
+        /// txtFirstName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFirstName;
         
         /// <summary>
         /// txtTaz control.
@@ -67,31 +85,22 @@ namespace Myproject.forms {
         protected global::System.Web.UI.WebControls.TextBox txtDOB;
         
         /// <summary>
-        /// ImageButton1 control.
+        /// ImageButton3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImageButton1;
+        protected global::System.Web.UI.WebControls.ImageButton ImageButton3;
         
         /// <summary>
-        /// Calendar1 control.
+        /// Calendar3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar Calendar1;
-        
-        /// <summary>
-        /// txtAge control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAge;
+        protected global::System.Web.UI.WebControls.Calendar Calendar3;
         
         /// <summary>
         /// txtPhoneNumber control.
@@ -166,6 +175,33 @@ namespace Myproject.forms {
         protected global::System.Web.UI.WebControls.DropDownList txtKlass;
         
         /// <summary>
+        /// txtGrade control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtGrade;
+        
+        /// <summary>
+        /// txtSchool control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSchool;
+        
+        /// <summary>
+        /// txtHMO control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtHMO;
+        
+        /// <summary>
         /// txtOffice control.
         /// </summary>
         /// <remarks>
@@ -184,22 +220,22 @@ namespace Myproject.forms {
         protected global::System.Web.UI.WebControls.TextBox txtDate;
         
         /// <summary>
-        /// ImageButton2 control.
+        /// ImageButton4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImageButton2;
+        protected global::System.Web.UI.WebControls.ImageButton ImageButton4;
         
         /// <summary>
-        /// Calendar2 control.
+        /// Calendar4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar Calendar2;
+        protected global::System.Web.UI.WebControls.Calendar Calendar4;
         
         /// <summary>
         /// txtWorker control.
@@ -274,13 +310,13 @@ namespace Myproject.forms {
         protected global::System.Web.UI.WebControls.LinkButton lnkExport;
         
         /// <summary>
-        /// gvAdult control.
+        /// gvChildren control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvAdult;
+        protected global::System.Web.UI.WebControls.GridView gvChildren;
         
         /// <summary>
         /// hidCustomerID control.

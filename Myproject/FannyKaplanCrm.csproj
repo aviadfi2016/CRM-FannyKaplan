@@ -174,21 +174,29 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="forms\adult.aspx" />
+    <Content Include="forms\Child.aspx" />
     <Content Include="forms\Interest.aspx" />
-    <Content Include="forms\child.aspx" />
     <Content Include="forms\Reports.aspx" />
     <Content Include="forms\searchItem.aspx" />
+    <Content Include="images\Abstract_Background_with_Blue_Triangles.jpg" />
     <Content Include="images\but_exel_over.gif" />
     <Content Include="images\cal.jpg" />
     <Content Include="images\logo.jpg" />
     <Content Include="images\logo1.jpg" />
     <Content Include="images\newLogo.jpg" />
-    <Content Include="Login.aspx" />
+    <Content Include="loginPage.aspx" />
+    <Content Include="logoutPage.aspx" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Account\Web.config" />
+    <None Include="Properties\PublishProfiles\FannyKaplan.pubxml" />
+    <None Include="Properties\PublishProfiles\FannyKaplanCRM.pubxml" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -381,19 +389,19 @@
     <Compile Include="forms\adult.aspx.designer.cs">
       <DependentUpon>adult.aspx</DependentUpon>
     </Compile>
+    <Compile Include="forms\Child.aspx.cs">
+      <DependentUpon>Child.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Child.aspx.designer.cs">
+      <DependentUpon>Child.aspx</DependentUpon>
+    </Compile>
     <Compile Include="forms\Interest.aspx.cs">
       <DependentUpon>Interest.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="forms\Interest.aspx.designer.cs">
       <DependentUpon>Interest.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="forms\child.aspx.cs">
-      <DependentUpon>child.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="forms\child.aspx.designer.cs">
-      <DependentUpon>child.aspx</DependentUpon>
     </Compile>
     <Compile Include="forms\Reports.aspx.cs">
       <DependentUpon>Reports.aspx</DependentUpon>
@@ -412,15 +420,27 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
+    <Compile Include="loginPage.aspx.cs">
+      <DependentUpon>loginPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
+    <Compile Include="loginPage.aspx.designer.cs">
+      <DependentUpon>loginPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="logoutPage.aspx.cs">
+      <DependentUpon>logoutPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logoutPage.aspx.designer.cs">
+      <DependentUpon>logoutPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -445,6 +465,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="FannyKaplan\" />
+    <Folder Include="images\FannyKaplan\" />
     <Folder Include="Scripts\forms\" />
   </ItemGroup>
   <PropertyGroup>

@@ -30,6 +30,29 @@ namespace Myproject.forms
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=D:\final project\version\14\Myproject\Myproject\App_Data\Data1.mdf;Integrated Security=True");
    protected void Page_Load(object sender, EventArgs e)
     {
+
+        if (Session["username"] == null)
+        {
+
+
+            Response.Redirect("~/loginPage.aspx");
+
+
+        }
+        else
+        {
+
+
+
+        }
+
+
+
+
+
+
+
+
         try
         {
             txtFirstName.Focus();
@@ -37,17 +60,21 @@ namespace Myproject.forms
             {
                
                 FillGrid();
-                
 
             }
-
-           
+      
         }
         catch
         {
             
         }
  
+
+
+
+
+
+
     }
 
         // function of the search button- filter the gridview by name
@@ -70,6 +97,9 @@ namespace Myproject.forms
        con.Close();
 
    }
+
+
+   
 
 
 
@@ -193,6 +223,7 @@ namespace Myproject.forms
     {
         try
         {
+            txtNewKlass.Text = "";
             txtFirstName.Text = "";
             txtLastName.Text = "";
             txtTaz.Text = "";
