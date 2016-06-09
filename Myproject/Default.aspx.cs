@@ -22,7 +22,7 @@ namespace Myproject
             else
             {
 
-                Label1.Text = Session["username"].ToString();
+                Label1.Text = Session["username"].ToString() + " - ברוך הבא";
 
             }
 

@@ -20,18 +20,10 @@ namespace Myproject.forms
     {
 
 
-
-
-
-
-
-
         // function of the search button- filter the gridview by name
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-
-
             String str = "select* from tblchildren where(FirstName like '%'+ @search+ '%') ";
             SqlCommand xp = new SqlCommand(str, con);
             xp.Parameters.Add("@search", SqlDbType.NVarChar).Value = txtsearch.Text;
@@ -47,11 +39,6 @@ namespace Myproject.forms
             con.Close();
 
         }
-
-
-
-
-
 
         // export to excel
 
@@ -71,11 +58,12 @@ namespace Myproject.forms
         {
             // Can Leave This Blank. 
         }
+        //the btn to export to excel
         protected void lnkExport_Click(object sender, EventArgs e)
         {
             Response.ClearContent();
             Response.Buffer = true;
-            Response.AddHeader("content-disposition", string.Format("attachment; filename={0}", "ילדים רשומים.xls"));
+            Response.AddHeader("content-disposition", string.Format("attachment; filename={0}", "children.xls"));
             Response.ContentType = "application/ms-excel";
             StringWriter sw = new StringWriter();
             HtmlTextWriter htw = new HtmlTextWriter(sw);
@@ -110,7 +98,7 @@ namespace Myproject.forms
 
 
         //establish a local connection to database
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=D:\final project\version\14\Myproject\Myproject\App_Data\Data1.mdf;Integrated Security=True");
+        SqlConnection con = new SqlConnection(@"Data Source=tcp:sp0pklddh6.database.windows.net,1433;Initial Catalog=fannyCRAKZl3GTV1;User Id=fannyk@sp0pklddh6;Password=Daco6135");
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -119,24 +107,12 @@ namespace Myproject.forms
 
 
                 Response.Redirect("~/loginPage.aspx");
-
-
             }
             else
             {
 
 
-
             }
-
-
-
-
-
-
-
-
-
 
             try
             {
@@ -145,8 +121,6 @@ namespace Myproject.forms
                 {
                     FillGrid();
                 }
-
-
             }
             catch
             {
@@ -154,6 +128,7 @@ namespace Myproject.forms
             }
 
         }
+
         // first boot of the grid
         protected void FillGrid()
         {
@@ -185,14 +160,21 @@ namespace Myproject.forms
 
         protected void Calendar3_SelectionChanged(object sender, EventArgs e)
         {
-            txtDOB.Text = Calendar3.SelectedDate.ToShortDateString();
+            string date = "";
+            date = Calendar3.SelectedDate.ToString("dd/MM/yyyy");
+            txtDOB.Text = date;
+          //  txtDOB.Text = Calendar3.SelectedDate.ToShortDateString();
             Calendar3.Visible = false;
         }
 
         //show the date of the regestrtion
         protected void Calendar4_SelectionChanged(object sender, EventArgs e)
         {
-            txtDate.Text = Calendar4.SelectedDate.ToShortDateString();
+            string date = "";
+            date = Calendar4.SelectedDate.ToString("dd/MM/yyyy");
+            txtDate.Text = date;
+
+           // txtDate.Text = Calendar4.SelectedDate.ToShortDateString();
             Calendar4.Visible = false;
         }
 
@@ -214,11 +196,7 @@ namespace Myproject.forms
         }
 
 
-
-
-
-
-
+        //button that clear all the fields
         protected void ClearControls()
         {
             try
@@ -255,6 +233,7 @@ namespace Myproject.forms
                 throw;
             }
         }
+
         // function of the save buttun
         protected void btnSave_Click(object sender, EventArgs e)
         {
@@ -447,9 +426,6 @@ namespace Myproject.forms
             }
         }
     }
-
-
-
 
 
 }

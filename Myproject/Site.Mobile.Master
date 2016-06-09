@@ -2,13 +2,13 @@
 <%@ Register Src="~/ViewSwitcher.ascx" TagPrefix="friendlyUrls" TagName="ViewSwitcher" %>
 
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html   lang="he" xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta name="viewport" content="width=device-width" />
     <title></title>
     <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
 </head>
-<body>
+<body lang="he" >
     <form id="form1" runat="server">
     <div>
         <h1>ניהול לקוחות פאני קפלן לנייד</h1>

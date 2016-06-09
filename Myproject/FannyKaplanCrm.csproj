@@ -181,6 +181,7 @@
     <Content Include="images\Abstract_Background_with_Blue_Triangles.jpg" />
     <Content Include="images\but_exel_over.gif" />
     <Content Include="images\cal.jpg" />
+    <Content Include="images\fannyk.jpeg" />
     <Content Include="images\logo.jpg" />
     <Content Include="images\logo1.jpg" />
     <Content Include="images\newLogo.jpg" />
@@ -191,7 +192,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Account\Web.config" />
+    <None Include="Properties\PublishProfiles\fannyCRM - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\fannyCRM - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\fannykaplan - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\FannyKaplan.pubxml" />
+    <None Include="Properties\PublishProfiles\FannyKaplanCRM - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\FannyKaplanCRM - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\FannyKaplanCRM.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -434,6 +440,11 @@
     <Compile Include="logoutPage.aspx.designer.cs">
       <DependentUpon>logoutPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201512011307240_InitialCreate.cs" />
+    <Compile Include="Migrations\201512011307240_InitialCreate.Designer.cs">
+      <DependentUpon>201512011307240_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -468,6 +479,11 @@
     <Folder Include="FannyKaplan\" />
     <Folder Include="images\FannyKaplan\" />
     <Folder Include="Scripts\forms\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201512011307240_InitialCreate.resx">
+      <DependentUpon>201512011307240_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

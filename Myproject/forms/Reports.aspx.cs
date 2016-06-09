@@ -21,35 +21,25 @@ namespace Myproject.forms
     {
 
 
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=D:\final project\version\14\Myproject\Myproject\App_Data\Data1.mdf;Integrated Security=True");
+        SqlConnection con = new SqlConnection(@"Data Source=tcp:sp0pklddh6.database.windows.net,1433;Initial Catalog=fannyCRAKZl3GTV1;User Id=fannyk@sp0pklddh6;Password=Daco6135");
 
-
-       protected void ClearControls()
-    {
-        try
+        //clear the search method in the ddl
+        protected void ClearControls()
         {
-           
-            txtSearchName.Text = "";
-            ddl_ItemSearch.ClearSelection(); 
-            ddl_ItemSearch1.ClearSelection(); 
-           
+            try
+            {
+                txtSearchName.Text = "";
+                ddl_ItemSearch.ClearSelection();
+                ddl_ItemSearch1.ClearSelection();
+            }
+            catch
+            {
+
+                throw;
+            }
         }
-        catch
-        {
- 
-            throw;
-        }
-    }
 
-
-
-
-
-
-         
-
-
-
+        //redirect to login page when no login was made
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -58,60 +48,44 @@ namespace Myproject.forms
 
 
                 Response.Redirect("~/loginPage.aspx");
-
-
             }
             else
             {
-
-           
-
             }
-
         }
 
         // the button the export the result of the search to excel file
-       protected void ExportToExcelButton_Click(object sender, EventArgs e)
-{
-
-    try
-    {
-        Response.Clear();
-        Response.Buffer = true;
-        Response.AddHeader("content-disposition", "attachment;filename=דוח.xls");
-        Response.Charset = "";
-        Response.ContentType = "application/vnd.ms-excel";
-        StringWriter sWriter = new StringWriter();
-        HtmlTextWriter hWriter = new HtmlTextWriter(sWriter);
-        gvAdult.RenderControl(hWriter);
-        gvChildren.RenderControl(hWriter);
-        gvInter.RenderControl(hWriter);
-        Response.Output.Write(sWriter.ToString());
-        Response.Flush();
-        Response.End();
-    }
-    catch 
-    {
-        throw;
-
-    }
-   
+        protected void ExportToExcelButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Response.Clear();
+                Response.Buffer = true;
+                Response.AddHeader("content-disposition", "attachment;filename=דוח.xls");
+                Response.Charset = "";
+                Response.ContentType = "application/vnd.ms-excel";
+                StringWriter sWriter = new StringWriter();
+                HtmlTextWriter hWriter = new HtmlTextWriter(sWriter);
+                gvAdult.RenderControl(hWriter);
+                gvChildren.RenderControl(hWriter);
+                gvInter.RenderControl(hWriter);
+                Response.Output.Write(sWriter.ToString());
+                Response.Flush();
+                Response.End();
+            }
+            catch
+            {
+                throw;
+            }
+        }
 
 
-}
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+        }
 
 
-       public override void VerifyRenderingInServerForm(Control control)
-       {
-       }
-
-
-            
-
-
-
-                 
-         // function of the search button
+        // function of the search button by methods thatwas requsted by the customer
 
         protected void btnSearch_Click_Click(object sender, EventArgs e)
         {
@@ -131,26 +105,24 @@ namespace Myproject.forms
                     {
                         Query = "select * from tblCustomers where Email Like '%" + txtSearchName.Text + "'";
                     }
-                   if (ddl_ItemSearch1.SelectedValue.ToString() == "חוגים")
+                    if (ddl_ItemSearch1.SelectedValue.ToString() == "חוגים")
                     {
-                    
-                       Query = "select* from tblCustomers where(Klass like '%'+ @search+ '%') ";
-                    
+
+                        Query = "select* from tblCustomers where(Klass like '%'+ @search+ '%') ";
+
                     }
-                   else if (ddl_ItemSearch1.SelectedValue.ToString() == "טלפון נייד")
+                    else if (ddl_ItemSearch1.SelectedValue.ToString() == "טלפון נייד")
                     {
                         Query = "select * from tblCustomers where MobilePhone Like '%" + txtSearchName.Text + "'";
                     }
-                   else if (ddl_ItemSearch1.SelectedValue.ToString() == "סטטוס")
+                    else if (ddl_ItemSearch1.SelectedValue.ToString() == "סטטוס")
                     {
                         Query = "select * from tblCustomers where (Office like '%'+ @search+ '%') ";
                     }
-                   else if (ddl_ItemSearch1.SelectedValue.ToString() == "שכונה")
-                   {
-                       Query = "select * from tblCustomers where (ddl_Neighborhood like '%'+ @search+ '%') ";
-                   }
-
-
+                    else if (ddl_ItemSearch1.SelectedValue.ToString() == "שכונה")
+                    {
+                        Query = "select * from tblCustomers where (ddl_Neighborhood like '%'+ @search+ '%') ";
+                    }
 
                     SqlDataAdapter sqlDa = new SqlDataAdapter(Query, con);
                     sqlDa.SelectCommand.Parameters.AddWithValue("@search", txtSearchName.Text);
@@ -242,7 +214,7 @@ namespace Myproject.forms
             finally
             {
                 con.Close();
-          
+
             }
         }
 
@@ -278,7 +250,7 @@ namespace Myproject.forms
 
 
 
-             }
+}
 
 
 
@@ -291,4 +263,3 @@ namespace Myproject.forms
 
 
 
-    

@@ -7,7 +7,6 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Configuration;
 using System.Text.RegularExpressions;
 using System.Collections;
 using System.Web.Security;
@@ -27,43 +26,29 @@ namespace Myproject.forms
         // searching page by age, mobile number, phone number and first name in each of the category- adult, child and intersts 
 
 
-        
-
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=D:\final project\version\14\Myproject\Myproject\App_Data\Data1.mdf;Integrated Security=True");
 
 
-
+        SqlConnection con = new SqlConnection(@"Data Source=tcp:sp0pklddh6.database.windows.net,1433;Initial Catalog=fannyCRAKZl3GTV1;User Id=fannyk@sp0pklddh6;Password=Daco6135");
 
         protected void Page_Load(object sender, EventArgs e)
         {
 
-
             if (Session["username"] == null)
             {
-
-
                 Response.Redirect("~/loginPage.aspx");
-
-
             }
             else
             {
 
-
-
             }
-
 
         }
 
         
-
-
         // function of the search button
 
         protected void btnSearch_Click_Click(object sender, EventArgs e)
         {
-
             string Query = string.Empty;
             try
             {
@@ -102,7 +87,6 @@ namespace Myproject.forms
                     gvAdult.DataSource = Ds;
                     gvAdult.DataBind();
                 }
-
 
                 else if (DropDownList2.SelectedValue.ToString() == "ילד")
                 {
