@@ -117,6 +117,12 @@
                                     </td>
                                     <td>
                                         <asp:TextBox ID="txtPhoneNumber" runat="server" MaxLength="50" Width="250px"></asp:TextBox>
+                                         <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server"
+                                        ControlToValidate="txtPhoneNumber"
+                                         ErrorMessage="הזן מספרים בלבד" ForeColor="Red"
+                                         ValidationExpression="^[0-9]*$" >
+                                         </asp:RegularExpressionValidator>
+                                </td>
                                     </td>
                                 </tr>
 
@@ -126,6 +132,12 @@
                                     <td>
                                         <asp:TextBox ID="txtMobilePhone" runat="server" MaxLength="50" Width="250px"></asp:TextBox>
                                             <asp:RequiredFieldValidator runat="server" id="RequiredFieldValidator6" controltovalidate="txtMobilePhone" ForeColor="red" errormessage="נא הזן מספר טלפון נייד"></asp:RequiredFieldValidator>
+                                         <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server"
+                                        ControlToValidate="txtMobilePhone"
+                                         ErrorMessage="הזן מספרים בלבד" ForeColor="Red"
+                                         ValidationExpression="^[0-9]*$" >
+                                         </asp:RegularExpressionValidator>
+                                </td>
                                     </td>
                                 </tr>
                                 <tr>

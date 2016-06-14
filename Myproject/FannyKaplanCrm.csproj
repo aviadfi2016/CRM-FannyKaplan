@@ -176,6 +176,7 @@
     <Content Include="forms\adult.aspx" />
     <Content Include="forms\Child.aspx" />
     <Content Include="forms\Interest.aspx" />
+    <Content Include="forms\reg.aspx" />
     <Content Include="forms\Reports.aspx" />
     <Content Include="forms\searchItem.aspx" />
     <Content Include="images\Abstract_Background_with_Blue_Triangles.jpg" />
@@ -408,6 +409,13 @@
     </Compile>
     <Compile Include="forms\Interest.aspx.designer.cs">
       <DependentUpon>Interest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="forms\reg.aspx.cs">
+      <DependentUpon>reg.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\reg.aspx.designer.cs">
+      <DependentUpon>reg.aspx</DependentUpon>
     </Compile>
     <Compile Include="forms\Reports.aspx.cs">
       <DependentUpon>Reports.aspx</DependentUpon>

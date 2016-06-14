@@ -21,6 +21,7 @@
         <p class="lead" dir="rtl"> <a href="/forms/Child.aspx" class="btn btn-primary btn-lg"> לקוח-ילד &raquo;</a></p>
         <p class="lead" dir="rtl"><a href="/forms/adult.aspx" class="btn btn-primary btn-lg"> לקוח-מבוגר &raquo;</a></p>
         <p class="lead" dir="rtl"><a href="/forms/Interest.aspx" class="btn btn-primary btn-lg"> לקוח חדש מתעניין &raquo;</a></p>
+        
     </div>
     
     <div class="row">

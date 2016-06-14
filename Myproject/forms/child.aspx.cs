@@ -402,6 +402,7 @@ namespace Myproject.forms
         {
             try
             {
+                Response.Write("<script>alert('הנתונים יימחקו')</script>");
                 ClearControls();
                 Button btn = sender as Button;
                 GridViewRow grow = btn.NamingContainer as GridViewRow;

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="משתמש חדש- ילד" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" EnableEventValidation="false" CodeBehind="Child.aspx.cs" Inherits="Myproject.forms.Child" %>
+﻿<%@ Page Title="לקוח - ילד" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" EnableEventValidation="false" CodeBehind="Child.aspx.cs" Inherits="Myproject.forms.Child" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -88,6 +88,11 @@
                                     </td>
                                     <td>
                                         <asp:TextBox ID="txtPhoneNumber" runat="server" MaxLength="10" Width="250px"></asp:TextBox>
+                                         <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server"
+                                        ControlToValidate="txtPhoneNumber"
+                                         ErrorMessage="הזן מספרים בלבד" ForeColor="Red"
+                                         ValidationExpression="^[0-9]*$" >
+                                         </asp:RegularExpressionValidator>
                                     </td>
                                 </tr>
                                 <tr>
@@ -96,6 +101,13 @@
                                     <td>
                                         <asp:TextBox ID="txtMobilePhone" runat="server" MaxLength="50" Width="250px"></asp:TextBox>
                                         <asp:RequiredFieldValidator runat="server" id="RequiredFieldValidator6" controltovalidate="txtMobilePhone" errormessage="נא הזן מספר טלפון נייד" ForeColor="Red" />
+
+                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator" runat="server"
+                                        ControlToValidate="txtMobilePhone"
+                                         ErrorMessage="הזן מספרים בלבד" ForeColor="Red"
+                                         ValidationExpression="^[0-9]*$" >
+                                         </asp:RegularExpressionValidator>
+
                                     </td>
                                 </tr>
                                 <tr>

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="משתמש חדש- מבוגר" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" EnableEventValidation="false" CodeBehind="adult.aspx.cs" Inherits="Myproject.forms.adult" %>
+﻿<%@ Page Title="לקוח - מבוגר" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" EnableEventValidation="false" CodeBehind="adult.aspx.cs" Inherits="Myproject.forms.adult" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <body dir="rtl">
@@ -89,7 +89,11 @@
                                 </td>
                                 <td>
                                     <asp:TextBox ID="txtPhoneNumber" runat="server" MaxLength="10" Width="250px"></asp:TextBox>
-
+                                       <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server"
+                                        ControlToValidate="txtPhoneNumber"
+                                         ErrorMessage="הזן מספרים בלבד" ForeColor="Red"
+                                         ValidationExpression="^[0-9]*$" >
+                                         </asp:RegularExpressionValidator>
                                 </td>
                             </tr>
                             <tr>
@@ -98,7 +102,11 @@
                                 <td>
                                     <asp:TextBox ID="txtMobilePhone" runat="server" MaxLength="50" Width="250px"></asp:TextBox>
                                       <asp:RequiredFieldValidator runat="server" id="RequiredFieldValidator6" controltovalidate="txtMobilePhone" ForeColor="red" errormessage="נא הזן מספר טלפון נייד"></asp:RequiredFieldValidator>
-
+                                       <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server"
+                                        ControlToValidate="txtMobilePhone"
+                                         ErrorMessage="הזן מספרים בלבד" ForeColor="Red"
+                                         ValidationExpression="^[0-9]*$" >
+                                         </asp:RegularExpressionValidator>
                                 </td>
                             </tr>
                             <tr>
