@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup   ="true" CodeBehind="reg.aspx.cs" Inherits="Myproject.forms.reg" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup   ="true" CodeBehind="reg.aspx.cs" Inherits="FannyKaplanCrm.forms.reg" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server" >
 <!DOCTYPE html>
 

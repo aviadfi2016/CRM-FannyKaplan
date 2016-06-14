@@ -1,4 +1,4 @@
-﻿<%@ Page Title="חיפוש משתמש" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="searchItem.aspx.cs" Inherits="Myproject.forms.searchItem" %>
+﻿<%@ Page Title="חיפוש משתמש" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="searchItem.aspx.cs" Inherits="FannyKaplanCrm.forms.searchItem" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <body dir="rtl">

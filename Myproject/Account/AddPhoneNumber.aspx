@@ -1,4 +1,4 @@
-﻿<%@ Page Title="מס' טלפון" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AddPhoneNumber.aspx.cs" Inherits="Myproject.Account.AddPhoneNumber" %>
+﻿<%@ Page Title="מס' טלפון" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AddPhoneNumber.aspx.cs" Inherits="FannyKaplanCrm.Account.AddPhoneNumber" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h3 dir="rtl"><%: Title %></h3>

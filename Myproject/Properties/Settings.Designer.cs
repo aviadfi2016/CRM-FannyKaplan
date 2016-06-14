@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Myproject.Properties {
+namespace FannyKaplanCrm.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
