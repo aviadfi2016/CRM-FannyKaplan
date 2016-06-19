@@ -1,4 +1,4 @@
-﻿<%@ Page Title="אישור חשבון" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Confirm.aspx.cs" Inherits="FannyKaplanCrm.Account.Confirm" Async="true" %>
+﻿<%@ Page Title="אישור חשבון" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Confirm.aspx.cs" Inherits="Myproject.Account.Confirm" Async="true" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <h2><%: Title %>.</h2>

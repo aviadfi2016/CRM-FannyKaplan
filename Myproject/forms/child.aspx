@@ -1,4 +1,4 @@
-﻿<%@ Page Title="לקוח - ילד" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" EnableEventValidation="false" CodeBehind="Child.aspx.cs" Inherits="FannyKaplanCrm.forms.Child" %>
+﻿<%@ Page Title="לקוח - ילד" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" EnableEventValidation="false" CodeBehind="Child.aspx.cs" Inherits="Myproject.forms.Child" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 

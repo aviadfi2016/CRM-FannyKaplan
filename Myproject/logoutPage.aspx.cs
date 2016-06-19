@@ -9,6 +9,8 @@ namespace Myproject
 {
     public partial class logoutPage : System.Web.UI.Page
     {
+
+        //log out the user that was connected
         protected void Page_Load(object sender, EventArgs e)
         {
 

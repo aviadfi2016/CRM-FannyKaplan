@@ -1,6 +1,6 @@
 ﻿
 
-<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="FannyKaplanCrm._Default" %>
+<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Myproject._Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 <br>
@@ -31,7 +31,7 @@
                 סירטון הדרכה למשתמש
             </p>
             <p dir="rtl">
-                <a class="btn btn-default" href="">למד עוד &raquo;</a>
+                <a class="btn btn-default" href="https://drive.google.com/open?id=0ByzJL5NT4I_EQkxxaUFIejhweE0">למד עוד &raquo;</a>
             </p>
         </div>
         <div class="col-md-4">

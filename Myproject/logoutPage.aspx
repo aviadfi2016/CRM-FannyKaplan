@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="logoutPage.aspx.cs" Inherits="FannyKaplanCrm.logoutPage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="logoutPage.aspx.cs" Inherits="Myproject.logoutPage" %>
 
 <!DOCTYPE html>
 

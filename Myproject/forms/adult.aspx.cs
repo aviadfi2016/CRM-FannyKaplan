@@ -24,7 +24,7 @@ namespace Myproject.forms
 
 
 
-    //establish a local connection to database
+    //establish a connection to database
     public partial class adult : System.Web.UI.Page
     {
         SqlConnection con = new SqlConnection(@"Data Source=tcp:sp0pklddh6.database.windows.net,1433;Initial Catalog=fannyCRAKZl3GTV1;User Id=fannyk@sp0pklddh6;Password=Daco6135");
@@ -37,21 +37,11 @@ namespace Myproject.forms
 
                 Response.Redirect("~/loginPage.aspx");
 
-
             }
             else
             {
 
-
-
             }
-
-
-
-
-
-
-
 
             try
             {
@@ -69,18 +59,11 @@ namespace Myproject.forms
 
             }
 
-
-
-
-
-
-
         }
 
         // function of the search button- filter the gridview by name
         protected void Button1_Click(object sender, EventArgs e)
         {
-
 
             String str = "select* from tblCustomers where(FirstName like '%'+ @search+ '%') ";
             SqlCommand xp = new SqlCommand(str, con);
@@ -98,15 +81,7 @@ namespace Myproject.forms
 
         }
 
-
-
-
-
-
-
-
-
-
+        // calander of the DOB
         protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
         {
             Calendar1.Visible = true;
@@ -132,7 +107,7 @@ namespace Myproject.forms
             //txtDate.Text = Calendar2.SelectedDate.ToShortDateString();
             Calendar2.Visible = false;
         }
-
+        // show the calander of the  Date
         protected void ImageButton2_Click(object sender, ImageClickEventArgs e)
         {
             Calendar2.Visible = true;
@@ -154,43 +129,35 @@ namespace Myproject.forms
         //You have to add an another Event for Export to work properly:
         public override void VerifyRenderingInServerForm(Control control)
         {
-            // Can Leave This Blank. 
+           //leave empty
         }
         protected void lnkExport_Click(object sender, EventArgs e)
         {
-            Response.ClearContent();
-            Response.Buffer = true;
-            Response.AddHeader("content-disposition", string.Format("attachment; filename={0}", "adults.xls"));
-            Response.ContentType = "application/ms-excel";
-            StringWriter sw = new StringWriter();
-            HtmlTextWriter htw = new HtmlTextWriter(sw);
-            gvAdult.AllowPaging = false;
-            FillGrid();
-            gvAdult.HeaderRow.Style.Add("background-color", "#FFFFFF");
-            for (int a = 0; a < gvAdult.HeaderRow.Cells.Count - 1; a++)
+            try
             {
-                gvAdult.HeaderRow.Cells[a].Style.Add("background-color", "#507CD1");
+                Response.Clear();
+                Response.Buffer = true;
+                Response.AddHeader("content-disposition", "attachment;filename=מבוגרים.xls");
+                Response.Charset = "";
+                Response.ContentType = "application/vnd.ms-excel";
+                StringWriter sWriter = new StringWriter();
+                HtmlTextWriter hWriter = new HtmlTextWriter(sWriter);
+                gvAdult.RenderControl(hWriter);  
+                Response.Output.Write(sWriter.ToString());
+                Response.Flush();
+                Response.End();
             }
-            int j = 1;
-            foreach (GridViewRow gvrow in gvAdult.Rows)
+            catch
             {
-                gvAdult.BackColor = Color.White;
-                if (j <= gvAdult.Rows.Count - 1)
-                {
-                    if (j % 2 != 0)
-                    {
-                        for (int k = 0; k < gvrow.Cells.Count - 1; k++)
-                        {
-                            gvrow.Cells[k].Style.Add("background-color", "#EFF3FB");
-                        }
-                    }
-                }
-                j++;
+                throw;
             }
-            gvAdult.RenderControl(htw);
-            Response.Write(sw.ToString());
-            Response.End();
         }
+
+
+
+
+            
+           
 
         //adding new klass to the ddl by the user
         protected void AddItem(object sender, EventArgs e)
@@ -224,7 +191,7 @@ namespace Myproject.forms
         }
 
 
-
+        //clear all the fields
         protected void ClearControls()
         {
             try
@@ -283,8 +250,8 @@ namespace Myproject.forms
                 for (int i = 0; i < InfoFaceBook.Items.Count; i++)
                 {
 
-                    if (InfoFaceBook.Items[i].Selected)//changed 1 to i 
-                        s += InfoFaceBook.Items[i].Text.ToString() + ""; //changed 1 to i
+                    if (InfoFaceBook.Items[i].Selected)
+                        s += InfoFaceBook.Items[i].Text.ToString() + "";
                 }
 
                 cmd.Parameters.AddWithValue("@InfoFaceBook", s);
@@ -393,8 +360,8 @@ namespace Myproject.forms
                 for (int i = 0; i < InfoFaceBook.Items.Count; i++)
                 {
 
-                    if (InfoFaceBook.Items[i].Selected)//changed 1 to i 
-                        s += InfoFaceBook.Items[i].Text.ToString() + ""; //changed 1 to i
+                    if (InfoFaceBook.Items[i].Selected)
+                        s += InfoFaceBook.Items[i].Text.ToString() + ""; 
                 }
 
                 cmd.Parameters.AddWithValue("@InfoFaceBook", s);

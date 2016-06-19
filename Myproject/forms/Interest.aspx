@@ -1,4 +1,4 @@
-﻿<%@ Page Title="לקוח מתעניין" Language="C#" MasterPageFile="~/Site.Master" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="Interest.aspx.cs" Inherits="FannyKaplanCrm.forms.Interest" %>
+﻿<%@ Page Title="לקוח מתעניין" Language="C#" MasterPageFile="~/Site.Master" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="Interest.aspx.cs" Inherits="Myproject.forms.Interest" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <body dir="rtl">

@@ -6,10 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
-using System.Security.Cryptography;
-using System.Text;
-using System.Configuration;
-using System.IO;
+
 namespace Myproject
 {
     public partial class loginPage : System.Web.UI.Page
@@ -24,41 +21,36 @@ namespace Myproject
 
         }
 
-
-
-    
-
-
         // submit the user name and password
         protected void btnsubmit_Click(object sender, EventArgs e)
         {
-           
+
             con.Open();
-            cmd.Connection=con;
+            cmd.Connection = con;
             cmd.CommandText = ("Select * from login where username='" + txtusername.Text + "' and pwd ='" + txtpassword.Text + "'");
-            dr= cmd.ExecuteReader();
+            dr = cmd.ExecuteReader();
             dr.Read();
-            if(dr.HasRows){
-                Session["username"]= txtusername.Text;
+            if (dr.HasRows)
+            {
+                Session["username"] = txtusername.Text;
                 Response.Redirect("Default.aspx");
 
 
-          
-
             }
 
-            else{
+            else
+            {
 
                 Response.Write("<script>alert('סיסמא ושם משתמש שגויים')</script>");
 
 
             }
 
-           con.Close();
+            con.Close();
 
 
+        }
     }
-}
 
 
 

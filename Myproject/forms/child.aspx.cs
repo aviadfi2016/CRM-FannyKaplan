@@ -42,7 +42,7 @@ namespace Myproject.forms
 
         // export to excel
 
-        void gvDepartmentsFill()
+        void gvChildrenFill()
         {
 
             string Query = "Select * from tblchildren";
@@ -53,51 +53,38 @@ namespace Myproject.forms
             gvChildren.DataSource = ds.Tables[0];
             gvChildren.DataBind();
         }
-        //You have to add an another Event for Export to work properly:
+       
         public override void VerifyRenderingInServerForm(Control control)
         {
-            // Can Leave This Blank. 
+            // Can Leave This empty. 
         }
         //the btn to export to excel
         protected void lnkExport_Click(object sender, EventArgs e)
         {
-            Response.ClearContent();
-            Response.Buffer = true;
-            Response.AddHeader("content-disposition", string.Format("attachment; filename={0}", "children.xls"));
-            Response.ContentType = "application/ms-excel";
-            StringWriter sw = new StringWriter();
-            HtmlTextWriter htw = new HtmlTextWriter(sw);
-            gvChildren.AllowPaging = false;
-            FillGrid();
-            gvChildren.HeaderRow.Style.Add("background-color", "#FFFFFF");
-            for (int a = 0; a < gvChildren.HeaderRow.Cells.Count - 1; a++)
+            try
             {
-                gvChildren.HeaderRow.Cells[a].Style.Add("background-color", "#507CD1");
+                Response.Clear();
+                Response.Buffer = true;
+                Response.AddHeader("content-disposition", "attachment;filename=ילדים.xls");
+                Response.Charset = "";
+                Response.ContentType = "application/vnd.ms-excel";
+                StringWriter sWriter = new StringWriter();
+                HtmlTextWriter hWriter = new HtmlTextWriter(sWriter);
+                gvChildren.RenderControl(hWriter);
+                Response.Output.Write(sWriter.ToString());
+                Response.Flush();
+                Response.End();
             }
-            int j = 1;
-            foreach (GridViewRow gvrow in gvChildren.Rows)
+            catch
             {
-                gvChildren.BackColor = Color.White;
-                if (j <= gvChildren.Rows.Count - 1)
-                {
-                    if (j % 2 != 0)
-                    {
-                        for (int k = 0; k < gvrow.Cells.Count - 1; k++)
-                        {
-                            gvrow.Cells[k].Style.Add("background-color", "#EFF3FB");
-                        }
-                    }
-                }
-                j++;
+                throw;
             }
-            gvChildren.RenderControl(htw);
-            Response.Write(sw.ToString());
-            Response.End();
         }
 
 
 
-        //establish a local connection to database
+
+        //establish a connection to database
         SqlConnection con = new SqlConnection(@"Data Source=tcp:sp0pklddh6.database.windows.net,1433;Initial Catalog=fannyCRAKZl3GTV1;User Id=fannyk@sp0pklddh6;Password=Daco6135");
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -110,7 +97,6 @@ namespace Myproject.forms
             }
             else
             {
-
 
             }
 
@@ -265,8 +251,8 @@ namespace Myproject.forms
                 for (int i = 0; i < InfoFaceBook.Items.Count; i++)
                 {
 
-                    if (InfoFaceBook.Items[i].Selected)//changed 1 to i 
-                        s += InfoFaceBook.Items[i].Text.ToString() + ""; //changed 1 to i
+                    if (InfoFaceBook.Items[i].Selected)
+                        s += InfoFaceBook.Items[i].Text.ToString() + ""; 
                 }
 
                 cmd.Parameters.AddWithValue("@InfoFaceBook", s);
@@ -370,8 +356,8 @@ namespace Myproject.forms
                 for (int i = 0; i < InfoFaceBook.Items.Count; i++)
                 {
 
-                    if (InfoFaceBook.Items[i].Selected)//changed 1 to i 
-                        s += InfoFaceBook.Items[i].Text.ToString() + ""; //changed 1 to i
+                    if (InfoFaceBook.Items[i].Selected)
+                        s += InfoFaceBook.Items[i].Text.ToString() + ""; 
                 }
 
                 cmd.Parameters.AddWithValue("@InfoFaceBook", s);

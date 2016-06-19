@@ -1,4 +1,4 @@
-﻿<%@ Page Title="הנפקת דוחות" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Reports.aspx.cs" Inherits="FannyKaplanCrm.forms.Reports" %>
+﻿<%@ Page Title="הנפקת דוחות" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Reports.aspx.cs" Inherits="Myproject.forms.Reports" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <body dir="rtl">

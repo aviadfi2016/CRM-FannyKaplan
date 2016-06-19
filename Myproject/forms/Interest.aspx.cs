@@ -41,7 +41,7 @@ namespace Myproject.forms
 
 
         // export to excel
-        void gvDepartmentsFill()
+        void gvInterFill()
         {
 
             string Query = "Select * from tblInter";
@@ -52,49 +52,36 @@ namespace Myproject.forms
             gvInter.DataSource = ds.Tables[0];
             gvInter.DataBind();
         }
-        //You have to add an another Event for Export to work properly:
+       
         public override void VerifyRenderingInServerForm(Control control)
         {
-            // Can Leave This Blank. 
+            // Can Leave This empty. 
         }
 
 
         //export the data into excel file
         protected void lnkExport_Click(object sender, EventArgs e)
         {
-            Response.ClearContent();
-            Response.Buffer = true;
-            Response.AddHeader("content-disposition", string.Format("attachment; filename={0}", "interests.xls"));
-            Response.ContentType = "application/ms-excel";
-            StringWriter sw = new StringWriter();
-            HtmlTextWriter htw = new HtmlTextWriter(sw);
-            gvInter.AllowPaging = false;
-            FillGrid();
-            gvInter.HeaderRow.Style.Add("background-color", "#FFFFFF");
-            for (int a = 0; a < gvInter.HeaderRow.Cells.Count - 1; a++)
+            try
             {
-                gvInter.HeaderRow.Cells[a].Style.Add("background-color", "#507CD1");
+                Response.Clear();
+                Response.Buffer = true;
+                Response.AddHeader("content-disposition", "attachment;filename=מבוגרים.xls");
+                Response.Charset = "";
+                Response.ContentType = "application/vnd.ms-excel";
+                StringWriter sWriter = new StringWriter();
+                HtmlTextWriter hWriter = new HtmlTextWriter(sWriter);
+                gvInter.RenderControl(hWriter);
+                Response.Output.Write(sWriter.ToString());
+                Response.Flush();
+                Response.End();
             }
-            int j = 1;
-            foreach (GridViewRow gvrow in gvInter.Rows)
+            catch
             {
-                gvInter.BackColor = Color.White;
-                if (j <= gvInter.Rows.Count - 1)
-                {
-                    if (j % 2 != 0)
-                    {
-                        for (int k = 0; k < gvrow.Cells.Count - 1; k++)
-                        {
-                            gvrow.Cells[k].Style.Add("background-color", "#EFF3FB");
-                        }
-                    }
-                }
-                j++;
+                throw;
             }
-            gvInter.RenderControl(htw);
-            Response.Write(sw.ToString());
-            Response.End();
         }
+
 
         //show the date of the regestrtion
         protected void Calendar5_SelectionChanged(object sender, EventArgs e)
@@ -114,7 +101,7 @@ namespace Myproject.forms
         }
 
 
-        //establish a local connection to database
+        //establish a  connection to database
         SqlConnection con = new SqlConnection(@"Data Source=tcp:sp0pklddh6.database.windows.net,1433;Initial Catalog=fannyCRAKZl3GTV1;User Id=fannyk@sp0pklddh6;Password=Daco6135");
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -344,8 +331,8 @@ namespace Myproject.forms
                 string s = "";
                 for (int i = 0; i < InfoBox.Items.Count; i++)
                 {
-                    if (InfoBox.Items[i].Selected)//changed 1 to i 
-                        s += InfoBox.Items[i].Text.ToString() + ""; //changed 1 to i
+                    if (InfoBox.Items[i].Selected)
+                        s += InfoBox.Items[i].Text.ToString() + ""; 
                 }
                 cmd.Parameters.AddWithValue("@Info", s);
                 cmd.Parameters.AddWithValue("@Descrip", txtDescrip.Text);
@@ -396,8 +383,8 @@ namespace Myproject.forms
                 string s = "";
                 for (int i = 0; i < InfoBox.Items.Count; i++)
                 {
-                    if (InfoBox.Items[i].Selected)//changed 1 to i 
-                        s += InfoBox.Items[i].Text.ToString() + ""; //changed 1 to i
+                    if (InfoBox.Items[i].Selected)
+                        s += InfoBox.Items[i].Text.ToString() + ""; 
                 }
                 cmd.Parameters.AddWithValue("@Info", s);
                 cmd.Parameters.AddWithValue("@Descrip", txtDescrip.Text);

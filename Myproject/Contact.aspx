@@ -1,4 +1,4 @@
-﻿<%@ Page Title="צור קשר" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Contact.aspx.cs" Inherits="FannyKaplanCrm.Contact" %>
+﻿<%@ Page Title="צור קשר" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Contact.aspx.cs" Inherits="Myproject.Contact" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <body dir="rtl">
