@@ -65,7 +65,7 @@ namespace Myproject.forms
             {
                 Response.Clear();
                 Response.Buffer = true;
-                Response.AddHeader("content-disposition", "attachment;filename=ילדים.xls");
+                Response.AddHeader("content-disposition", "attachment;filename=Children.xls");
                 Response.Charset = "";
                 Response.ContentType = "application/vnd.ms-excel";
                 StringWriter sWriter = new StringWriter();
